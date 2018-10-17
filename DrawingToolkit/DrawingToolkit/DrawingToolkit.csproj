@@ -65,8 +65,12 @@
     <Compile Include="Interfaces\ITool.cs" />
     <Compile Include="Interfaces\IToolbox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shape\Circle.cs" />
     <Compile Include="Shape\Line.cs" />
     <Compile Include="Toolboxes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\CircleTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\LineTool.cs">
