@@ -1,12 +1,14 @@
 ﻿using DrawingToolkit.Tools;
 using System.Windows.Forms;
+using DrawingToolkit.Interfaces;
+using DrawingToolkit.Tools;
 
 namespace DrawingToolkit
 {
     public partial class DrawingForm : Form
     {
-        private Toolbox toolbox;
-        private DrawingCanvas canvas;
+        private IToolbox toolbox;
+        private ICanvas canvas;
 
         public DrawingForm()
         {
@@ -27,17 +29,16 @@ namespace DrawingToolkit
             #endregion
 
             #region Tools
-
-            this.toolbox.AddTool(new SelectTool());
             this.toolbox.AddTool(new LineTool());
-            this.toolbox.AddTool(new RectangleTool());
-            this.toolbox.AddTool(new CircleTool());
+            //this.toolbox.AddTool(new SelectTool());
+            //this.toolbox.AddTool(new RectangleTool());
+            //this.toolbox.AddTool(new CircleTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 
             #endregion
         }
 
-        private void Toolbox_ToolSelected(Tool tool)
+        private void Toolbox_ToolSelected(ITool tool)
         {
             if (this.canvas != null)
             {

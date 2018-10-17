@@ -1,11 +1,13 @@
 ﻿using System.Windows.Forms;
 using DrawingToolkit.Shape;
+using DrawingToolkit.Interfaces;
+using DrawingToolkit.Tools;
 
 namespace DrawingToolkit.Tools
 {
-    public class LineTool : ToolStripButton, Tool
+    public class LineTool : ToolStripButton, ITool
     {
-        private DrawingCanvas drawingCanvas;
+        private ICanvas drawingCanvas;
         private Line line;
 
         public Cursor Cursor
@@ -16,7 +18,7 @@ namespace DrawingToolkit.Tools
             }
         }
 
-        public DrawingCanvas TargetCanvas
+        public ICanvas TargetCanvas
         {
             get
             {
