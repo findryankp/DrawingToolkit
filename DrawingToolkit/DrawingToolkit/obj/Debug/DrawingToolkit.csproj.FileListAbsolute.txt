@@ -28,3 +28,6 @@ D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\obj\Debug\
 D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.csproj.CoreCompileInputs.cache
 D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.exe
 D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.pdb
+D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.exe.config
+D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.exe
+D:\FILE\02_KULIAH\02_KPL\DrawingToolkit\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.pdb

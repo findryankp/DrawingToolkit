@@ -1,7 +1,6 @@
 ﻿using DrawingToolkit.Tools;
 using System.Windows.Forms;
 using DrawingToolkit.Interfaces;
-using DrawingToolkit.Tools;
 
 namespace DrawingToolkit
 {
@@ -31,8 +30,8 @@ namespace DrawingToolkit
             #region Tools
             this.toolbox.AddTool(new LineTool());
             this.toolbox.AddTool(new CircleTool());
-            //this.toolbox.AddTool(new SelectTool());
-            //this.toolbox.AddTool(new RectangleTool());
+            this.toolbox.AddTool(new SelectTool());
+            this.toolbox.AddTool(new RectangleTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 
             #endregion

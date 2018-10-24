@@ -1,92 +1,46 @@
-﻿using System.Windows.Forms;
-using System.Diagnostics;
-using DrawingToolkit.Interfaces;
-using DrawingToolkit.Shape;
+﻿using System.Drawing;
 
-namespace DrawingToolkit.Tools
+namespace DrawingToolkit.Shape
 {
-    public class RectangleTool : ToolStripButton, ITool
+    public class Rectangle : DrawingObject
     {
-        private ICanvas drawingCanvas;
-        private Rectangle rectangle;
+        public int rectX { get; set; }
+        public int rectY { get; set; }
+        public int rectWidth { get; set; }
+        public int rectHeight { get; set; }
 
-        public Cursor Cursor
+        private Pen pen;
+
+        public Rectangle()
         {
-            get
-            {
-                return Cursors.Arrow;
-            }
+            this.pen = new Pen(Color.Black);
         }
 
-        public ICanvas TargetCanvas
+        public Rectangle(int initX, int initY) : this()
         {
-            get
-            {
-                return this.drawingCanvas;
-            }
-
-            set
-            {
-                this.drawingCanvas = value;
-            }
-
+            this.rectX = initX;
+            this.rectY = initY;
         }
 
-        public RectangleTool()
+        public Rectangle(int initX, int initY, int initWidth, int initHeight) : this(initX, initY)
         {
-            this.Name = "Rectangle Tool";
-            this.ToolTipText = "Rectangle Tool";
-            Debug.WriteLine(this.Name + "is initialized.");
-            this.Image = IconSet.rect;
-            this.CheckOnClick = true;
+            this.rectHeight = initHeight;
+            this.rectWidth = initWidth;
         }
 
-        public void ToolMouseDown(object sender, MouseEventArgs e)
+        public override void Draw()
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.rectangle = new Rectangle(e.X, e.Y);
-            }
+            this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
         }
 
-        public void ToolMouseMove(object sender, MouseEventArgs e)
+        public override bool Selected(Point point)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                int height = 0;
-                int width = 0;
-
-                if (e.X > this.rectangle.rectX)
-                {
-                    width = e.X - this.rectangle.rectX;
-                    height = e.Y - this.rectangle.rectY;
-                }
-                else
-                {
-                    width = this.rectangle.rectX - e.X;
-                    height = this.rectangle.rectY - e.Y;
-                }
-
-
-                if (width > 0 && height > 0)
-                {
-                    this.rectangle.rectWidth = width;
-                    this.rectangle.rectHeight = height;
-                }
-            }
+            throw new System.NotImplementedException();
         }
 
-        public void ToolMouseUp(object sender, MouseEventArgs e)
+        public override void Idle()
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (e.X <= this.rectangle.rectX)
-                {
-                    this.rectangle.rectX = e.X;
-                    this.rectangle.rectY = e.Y;
-                }
-                drawingCanvas.AddDrawingObject(this.rectangle);
-            }
+            throw new System.NotImplementedException();
         }
     }
 }

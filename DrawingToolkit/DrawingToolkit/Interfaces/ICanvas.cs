@@ -13,5 +13,8 @@ namespace DrawingToolkit.Interfaces
         void Repaint();
         void SetBackgroundColor(Color color);
         void AddDrawingObject(DrawingObject drawingObject); //membuat gambarnya
+
+        List<DrawingObject> GetObject();
+
     }
 }

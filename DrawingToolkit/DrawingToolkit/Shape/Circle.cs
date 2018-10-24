@@ -32,5 +32,15 @@ namespace DrawingToolkit.Shape
         {
             this.graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
         }
+
+        public override bool Selected(Point point)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Idle()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

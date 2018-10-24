@@ -38,6 +38,10 @@ namespace DrawingToolkit.Tools
             this.ToolTipText = "Circle Tool";
             this.Image = IconSet.circle;
             this.CheckOnClick = true;
+            if (1 == 1)
+            {
+
+            }
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)

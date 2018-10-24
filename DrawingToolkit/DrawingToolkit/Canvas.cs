@@ -86,5 +86,10 @@ namespace DrawingToolkit
 
             }
         }
+
+        public List<DrawingObject> GetObject()
+        {
+            return drawingObjects;
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace DrawingToolkit
         }
 
         public abstract void Draw(); //memanggil bentuk yang ingin dipanggil
+        public abstract Boolean Selected(Point point);
+        public abstract void Idle();
     }
 }
