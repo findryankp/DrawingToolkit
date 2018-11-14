@@ -1,0 +1,12 @@
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\bin\Debug\DiagramToolkit.exe.config
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\bin\Debug\DiagramToolkit.exe
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\bin\Debug\DiagramToolkit.pdb
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.csprojAssemblyReference.cache
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.CursorSet.resources
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.IconSet.resources
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.MainWindow.resources
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.Properties.Resources.resources
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.csproj.GenerateResource.cache
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.csproj.CoreCompileInputs.cache
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.exe
+D:\FILE\02_KULIAH\02_KPL\BELAJAR\KPL_7\src\DiagramToolkit\DiagramToolkit\obj\Debug\DiagramToolkit.pdb
