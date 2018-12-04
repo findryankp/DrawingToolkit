@@ -61,6 +61,7 @@
     <Compile Include="DefaultToolbox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DrawingState.cs" />
     <Compile Include="Example TollbarItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,6 +88,12 @@
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Shapes\Line.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
+    <Compile Include="Shapes\StateLineSegment.cs" />
+    <Compile Include="StateDrawingObject.cs" />
+    <Compile Include="States\EditState.cs" />
+    <Compile Include="States\PreviewState.cs" />
+    <Compile Include="States\StateLine.cs" />
+    <Compile Include="States\StaticState.cs" />
     <Compile Include="Tools\CircleTool.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -94,6 +101,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\RectangleTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\StateLineTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="IconSet.resx">

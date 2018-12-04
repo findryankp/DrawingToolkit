@@ -30,6 +30,16 @@ namespace DiagramToolkit
     //3. tambahkan toolnya di main window
     #endregion
 
+    #region State
+    //--Line State--//
+    //1. buat statedrawing objectnya
+    //2. buat kelas drawing statenya
+    //3. buat folder State
+    //4. buat preview state
+    //5. buat file pada folder shapesnya stateLine
+    //6. ubah canvasnya tambahin repaint pada setiap gerakan mousenya
+    #endregion
+
     public partial class MainWindow : Form
     {
         private IToolbox toolbox;
@@ -64,14 +74,15 @@ namespace DiagramToolkit
             ////Initialize tools
             Debug.WriteLine("Loading tools...");
             this.toolbox.AddTool(new LineTool());
-            this.toolbox.ToolSelected += Toolbox_ToolSelected;
-
             //Rectangle tool
             this.toolbox.AddTool(new RectangleTool());
-            this.toolbox.ToolSelected += Toolbox_ToolSelected;
-
             //Circle tool
             this.toolbox.AddTool(new CircleTool());
+            this.toolbox.AddSeparator();
+
+            //state
+            this.toolbox.AddTool(new StateLineTool());
+
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion
 

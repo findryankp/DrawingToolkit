@@ -37,6 +37,7 @@ namespace DiagramToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseMove(sender, e);
+                this.Repaint();
             }
         }
 
@@ -45,6 +46,7 @@ namespace DiagramToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseUp(sender, e);
+                this.Repaint();
             }
         }
 
@@ -53,6 +55,7 @@ namespace DiagramToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseDown(sender, e);
+                this.Repaint();
             }
         }
 
@@ -84,8 +87,6 @@ namespace DiagramToolkit
         public void AddDrawingObject(DrawingObject drawingObject)
         {
             this.drawingObjects.Add(drawingObject);
-            this.Repaint();
-            Debug.WriteLine("New drawing object");
         }
     }
 }
