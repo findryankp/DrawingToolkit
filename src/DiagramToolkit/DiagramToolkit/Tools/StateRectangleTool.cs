@@ -1,9 +1,5 @@
 ﻿using DiagramToolkit.Shapes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DiagramToolkit.Tools
@@ -55,7 +51,7 @@ namespace DiagramToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.varCanvas.AddDrawingObject(this.varStateRectangle);
+                //this.varCanvas.AddDrawingObject(this.varStateRectangle);
                 varStateRectangle.Select();
             }
         }
@@ -74,7 +70,6 @@ namespace DiagramToolkit.Tools
                         this.varStateRectangle.Width = width;
                         this.varStateRectangle.Height = height;
                     }
-                    this.varCanvas.AddDrawingObject(this.varStateRectangle);
                 }
             }
         }
