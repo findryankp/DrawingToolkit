@@ -88,6 +88,7 @@
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="Shapes\Line.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
+    <Compile Include="Shapes\RectangleState.cs" />
     <Compile Include="Shapes\StateLineSegment.cs" />
     <Compile Include="StateDrawingObject.cs" />
     <Compile Include="States\EditState.cs" />
@@ -104,6 +105,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\StateLineTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\StateRectangleTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="IconSet.resx">
