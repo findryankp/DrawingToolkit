@@ -60,6 +60,9 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
+            this.xInitial = e.X;
+            this.yInitial = e.Y;
+
             if (e.Button == MouseButtons.Left && canvas != null)
             {
                 canvas.DeselectAllObjects();
