@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DiagramToolkit.Shapes;
-using System.Diagnostics;
 
 namespace DiagramToolkit.Tools
 {
-    public class RectangleTool : ToolStripButton, ITool
+    public class SelectionTool : ToolStripButton, ITool
     {
-        private ICanvas varCanvas;
-        private Rectangle varRectangle;
+        private ICanvas canvas;
 
         public Cursor Cursor
         {
@@ -26,20 +23,20 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return this.varCanvas;
+                return this.canvas;
             }
 
             set
             {
-                this.varCanvas = value;
+                this.canvas = value;
             }
         }
 
-        public RectangleTool()
+        public SelectionTool()
         {
-            this.Name = "Rectangle tool";
-            this.ToolTipText = "Rectangle tool";
-            this.Image = IconSet.bounding_box;
+            this.Name = "Selection tool";
+            this.ToolTipText = "Selection tool";
+            this.Image = IconSet.cursor;
             this.CheckOnClick = true;
         }
 
@@ -60,36 +57,21 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && canvas != null)
             {
-                this.varRectangle = new Rectangle(e.X, e.Y);
+                canvas.DeselectAllObjects();
+                canvas.SelectObjectAt(e.X, e.Y);
             }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (this.varRectangle != null)
-                {
-                    int width = e.X - this.varRectangle.X;
-                    int height = e.Y - this.varRectangle.Y;
-
-                    if (width > 0 && height > 0)
-                    {
-                        this.varRectangle.Width = width;
-                        this.varRectangle.Height = height;
-                    }
-                }
-            }
+           
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.varCanvas.AddDrawingObject(this.varRectangle);
-            }
+            
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Shapes
 {
-    public class RectangleState : StateDrawingObject
+    public class RectangleState : DrawingObject
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -55,8 +56,17 @@ namespace DiagramToolkit.Shapes
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
             }
+        }
+
+        public override bool Intersect(int xTest, int yTest)
+        {
+            if ((xTest >= X && xTest <= X + Width) && (yTest >= Y && yTest <= Y + Height))
+            {
+                Debug.WriteLine("Object " + ID + " is selected.");
+                return true;
+            }
+            return false;
         }
     }
 }

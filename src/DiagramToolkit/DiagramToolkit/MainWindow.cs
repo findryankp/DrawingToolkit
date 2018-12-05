@@ -40,6 +40,12 @@ namespace DiagramToolkit
     //6. ubah canvasnya tambahin repaint pada setiap gerakan mousenya
     #endregion
 
+    #region selection
+     //1. buat selection tool
+     //2. tambahkan select deselect pada defaultcanvas
+     //3. tambahkan pada drawing object
+    #endregion
+
     public partial class MainWindow : Form
     {
         private IToolbox toolbox;
@@ -73,13 +79,8 @@ namespace DiagramToolkit
             //tool tool yang di keluarkan
             ////Initialize tools
             Debug.WriteLine("Loading tools...");
-            this.toolbox.AddTool(new LineTool());
-            //Rectangle tool
-            this.toolbox.AddTool(new RectangleTool());
-            //Circle tool
-            this.toolbox.AddTool(new CircleTool());
-            this.toolbox.AddSeparator();
 
+            this.toolbox.AddTool(new SelectionTool());
             //state
             this.toolbox.AddTool(new StateLineTool());
             this.toolbox.AddTool(new StateRectangleTool());

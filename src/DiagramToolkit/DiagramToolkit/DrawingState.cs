@@ -18,14 +18,14 @@ namespace DiagramToolkit
 
         private DrawingState state;
 
-        public abstract void Draw(StateDrawingObject obj);
+        public abstract void Draw(DrawingObject obj);
 
-        public virtual void Deselect(StateDrawingObject obj)
+        public virtual void Deselect(DrawingObject obj)
         {
             //default implementation, no state transition
         }
 
-        public virtual void Select(StateDrawingObject obj)
+        public virtual void Select(DrawingObject obj)
         {
             //default implementation, no state transition
         }

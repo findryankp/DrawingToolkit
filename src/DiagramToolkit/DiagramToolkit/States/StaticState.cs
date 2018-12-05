@@ -19,12 +19,12 @@ namespace DiagramToolkit.States
             return instance;
         }
 
-        public override void Draw(StateDrawingObject obj)
+        public override void Draw(DrawingObject obj)
         {
             obj.RenderOnStaticView();
         }
 
-        public override void Select(StateDrawingObject obj)
+        public override void Select(DrawingObject obj)
         {
             obj.ChangeState(EditState.GetInstance());
         }

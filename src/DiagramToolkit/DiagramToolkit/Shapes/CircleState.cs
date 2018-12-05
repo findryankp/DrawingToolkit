@@ -6,7 +6,7 @@ namespace DiagramToolkit.Shapes
 {
     //copy semua sama
     //masukan fungsi draw di circle pada oneditingview
-    public class CircleState : StateDrawingObject
+    public class CircleState : DrawingObject
     {
         public int cirX { get; set; }
         public int cirY { get; set; }
@@ -58,6 +58,11 @@ namespace DiagramToolkit.Shapes
         public override void RenderOnPreview()
         {
             RenderOnStaticView();
+        }
+
+        public override bool Intersect(int xTest, int yTest)
+        {
+            throw new NotImplementedException();
         }
     }
 }
