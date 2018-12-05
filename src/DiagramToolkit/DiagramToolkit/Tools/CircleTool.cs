@@ -35,7 +35,7 @@ namespace DiagramToolkit.Tools
         {
             this.Name = "Circle Tool";
             this.ToolTipText = "Circle Tool";
-            this.Image = IconSet.diagonal_line;
+            this.Image = IconSet.circle_icon;
             this.CheckOnClick = true;
         }
 
