@@ -90,5 +90,11 @@ namespace DiagramToolkit.States
             double m = (double)(Endpoint.Y - Startpoint.Y) / (double)(Endpoint.X - Startpoint.X);
             return m;
         }
+
+        public override void Translate(int x, int y, int xAmount, int yAmount)
+        {
+            this.Startpoint = new Point(this.Startpoint.X + xAmount, this.Startpoint.Y + yAmount);
+            this.Endpoint = new Point(this.Endpoint.X + xAmount, this.Endpoint.Y + yAmount);
+        }
     }
 }

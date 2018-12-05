@@ -26,6 +26,7 @@ namespace DiagramToolkit
         }
 
         public abstract bool Intersect(int xTest, int yTest);
+        public abstract void Translate(int x, int y, int xAmount, int yAmount);
 
         public abstract void RenderOnPreview();
         public abstract void RenderOnEditingView();

@@ -51,8 +51,17 @@ namespace DiagramToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                //this.varCanvas.AddDrawingObject(this.varStateRectangle);
-                varStateRectangle.Select();
+                if (varStateRectangle != null)
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        this.varStateRectangle.Select();
+                    }
+                    else if (e.Button == MouseButtons.Right)
+                    {
+                        varCanvas.RemoveDrawingObject(this.varStateRectangle);
+                    }
+                }
             }
         }
 

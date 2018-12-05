@@ -79,5 +79,10 @@ namespace DiagramToolkit.Shapes
             }
             return false;
         }
+
+        public override void Translate(int x, int y, int xAmount, int yAmount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
