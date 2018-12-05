@@ -72,7 +72,7 @@ namespace DiagramToolkit.Shapes
 
         public override bool Intersect(int xTest, int yTest)
         {
-            if ((xTest >= cirX && xTest <= cirWidth) && (yTest >= cirY && yTest <= cirHeight))
+            if ((xTest >= cirX && xTest <= cirX + cirWidth) && (yTest >= cirY && yTest <= cirY + cirHeight))
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -82,7 +82,8 @@ namespace DiagramToolkit.Shapes
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
         {
-            throw new NotImplementedException();
+            this.cirX += xAmount;
+            this.cirY += yAmount;
         }
     }
 }
