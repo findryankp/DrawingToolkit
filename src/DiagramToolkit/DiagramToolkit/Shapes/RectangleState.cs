@@ -32,9 +32,21 @@ namespace DiagramToolkit.Shapes
             this.Height = height;
         }
 
+        public override void RenderOnPreview()
+        {
+            this.pen = new Pen(Color.Red);
+            pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.DashDotDot;
+            if (this.Graphics != null)
+            {
+                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+            }
+        }
+
         public override void RenderOnEditingView()
         {
-            this.pen = new Pen(Color.Black);
+            this.pen = new Pen(Color.Blue);
             pen.Width = 1.5f;
             if (this.Graphics != null)
             {
@@ -43,19 +55,15 @@ namespace DiagramToolkit.Shapes
             }
         }
 
-        public override void RenderOnPreview()
-        {
-            RenderOnStaticView();
-        }
-
         public override void RenderOnStaticView()
         {
-            this.pen = new Pen(Color.Red);
+            this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
+            pen.DashStyle = DashStyle.Solid;
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
             }
         }
 

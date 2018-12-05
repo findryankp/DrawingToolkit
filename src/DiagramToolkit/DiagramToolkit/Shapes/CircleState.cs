@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -32,7 +33,7 @@ namespace DiagramToolkit.Shapes
             this.cirHeight = initHeight;
         }
 
-        public override void RenderOnStaticView()
+        public override void RenderOnPreview()
         {
             this.pen = new Pen(Color.Red);
             pen.Width = 1.5f;
@@ -44,10 +45,12 @@ namespace DiagramToolkit.Shapes
             }
         }
 
+
         public override void RenderOnEditingView()
         {
-            this.pen = new Pen(Color.Black);
+            this.pen = new Pen(Color.Blue);
             pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.Solid;
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -55,14 +58,26 @@ namespace DiagramToolkit.Shapes
             }
         }
 
-        public override void RenderOnPreview()
+        public override void RenderOnStaticView()
         {
-            RenderOnStaticView();
+            this.pen = new Pen(Color.Black);
+            pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.Solid;
+            if (this.Graphics != null)
+            {
+                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                this.Graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+            }
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            throw new NotImplementedException();
+            if ((xTest >= cirX && xTest <= cirWidth) && (yTest >= cirY && yTest <= cirHeight))
+            {
+                Debug.WriteLine("Object " + ID + " is selected.");
+                return true;
+            }
+            return false;
         }
     }
 }
