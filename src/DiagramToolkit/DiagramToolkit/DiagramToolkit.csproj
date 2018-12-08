@@ -85,14 +85,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shapes\ActivationBox.cs" />
+    <Compile Include="Sequences\ActivationBox.cs" />
+    <Compile Include="Sequences\MessageToSelf.cs" />
+    <Compile Include="Sequences\ObjectMessage.cs" />
     <Compile Include="Shapes\CircleState.cs" />
-    <Compile Include="Shapes\ObjectMessage.cs" />
     <Compile Include="Shapes\RectangleState.cs" />
-    <Compile Include="Shapes\StateLineSegment.cs" />
+    <Compile Include="Shapes\StateLine.cs" />
     <Compile Include="States\EditState.cs" />
     <Compile Include="States\PreviewState.cs" />
-    <Compile Include="States\StateLine.cs" />
     <Compile Include="States\StaticState.cs" />
     <Compile Include="Tools\SelectionTool.cs">
       <SubType>Component</SubType>
@@ -168,6 +168,7 @@
   <ItemGroup>
     <None Include="Resources\circle_icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace DiagramToolkit.Shapes
+namespace DiagramToolkit.Sequences
 {
-    public class ObjectMessage : DrawingObject
+    public class ActivationBox : DrawingObject
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -19,19 +19,19 @@ namespace DiagramToolkit.Shapes
         public int wTest;
         public int hTest;
 
-        public ObjectMessage()
+        public ActivationBox()
         {
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
         }
 
-        public ObjectMessage(int x, int y) : this()
+        public ActivationBox(int x, int y) : this()
         {
             this.X = x;
             this.Y = y;
         }
 
-        public ObjectMessage(int x, int y, int width, int height) : this(x, y)
+        public ActivationBox(int x, int y, int width, int height) : this(x, y)
         {
             this.Width = width;
             this.Height = height;
@@ -45,8 +45,8 @@ namespace DiagramToolkit.Shapes
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
+                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                drawLine();
             }
         }
 
@@ -57,8 +57,8 @@ namespace DiagramToolkit.Shapes
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
+                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                drawLine();
             }
         }
 
@@ -70,8 +70,8 @@ namespace DiagramToolkit.Shapes
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
+                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                drawLine();
             }
         }
 
@@ -94,13 +94,15 @@ namespace DiagramToolkit.Shapes
         public Point Startpoint;
         public Point Endpoint;
 
-        public void drawBox()
+        public void drawLine()
         {
             this.pen = new Pen(Color.Red);
             pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
-            xTest = Width + X;
-            this.Graphics.DrawRectangle(pen, xTest, Y, 10, 30);
+            pen.DashStyle = DashStyle.DashDotDot;
+            xTest = (Width / 2) + X;
+            yTest = Height + Y;
+            hTest = Width + Width;
+            this.Graphics.DrawRectangle(pen, xTest, yTest, 1, hTest);
         }
     }
 }
