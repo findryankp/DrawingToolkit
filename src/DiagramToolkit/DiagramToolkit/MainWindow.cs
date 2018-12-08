@@ -85,7 +85,10 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new StateLineTool());
             this.toolbox.AddTool(new StateRectangleTool());
             this.toolbox.AddTool(new StateCircleTool());
-
+            //sequence
+            this.toolbox.AddSeparator();
+            this.toolbox.AddTool(new ObjectMessageTool());
+            this.toolbox.AddTool(new MessageToSelfTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion
 

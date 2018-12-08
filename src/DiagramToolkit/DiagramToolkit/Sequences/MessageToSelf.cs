@@ -40,14 +40,12 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
+                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                drawSecondLine();
+                arrow();
             }
-            drawFirstLine();
-            drawSecondLine();
-            drawthirdLine();
-            arrow1();
-            arrow2();
         }
 
         public override void RenderOnEditingView()
@@ -58,14 +56,12 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
+                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                drawSecondLine();
+                arrow();
             }
-            drawFirstLine();
-            drawSecondLine();
-            drawthirdLine();
-            arrow1();
-            arrow2();
         }
 
         public override void RenderOnPreview()
@@ -76,23 +72,22 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
+                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                drawSecondLine();
+                arrow();
             }
-            drawFirstLine();
-            drawSecondLine();
-            drawthirdLine();
-            arrow1();
-            arrow2();
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            double m = GetSlope();
-            double b = Endpoint.Y - m * Endpoint.X;
-            double y_point = m * xTest + b;
+            x1 = Startpoint.X;
+            y1 = Startpoint.Y;
+            x2 = Endpoint.X;
+            y2 = Endpoint.Y;
 
-            if (Math.Abs(yTest - y_point) < EPSILON)
+            if ((xTest >= Startpoint.X && xTest <= (Endpoint.X+Startpoint.X)) && (yTest >= Startpoint.Y && yTest <= (Endpoint.Y + Startpoint.Y)))
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -117,25 +112,8 @@ namespace DiagramToolkit.Sequences
         public int x2;
         public int y2;
 
-        public void drawFirstLine()
-        {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-            Point sTest = new Point(x1, y1);
-            Point eTest = new Point(x2, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-        }
-
         public void drawSecondLine()
         {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
             x1 = Startpoint.X;
             y1 = Startpoint.Y;
             x2 = Endpoint.X;
@@ -143,27 +121,14 @@ namespace DiagramToolkit.Sequences
             Point sTest = new Point(x2, y1);
             Point eTest = new Point(x2, y2);
             this.Graphics.DrawLine(pen, sTest, eTest);
-        }
 
-        public void drawthirdLine()
-        {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-            Point sTest = new Point(x2, y2);
-            Point eTest = new Point(x1, y2);
+            sTest = new Point(x2, y2);
+            eTest = new Point(x1, y2);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
 
-        public void arrow1()
+        public void arrow()
         {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
             x1 = Startpoint.X;
             y1 = Startpoint.Y;
             x2 = Endpoint.X;
@@ -171,19 +136,8 @@ namespace DiagramToolkit.Sequences
             Point sTest = new Point(x1, y2);
             Point eTest = new Point(x1 + 10, y2 - 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
-        }
 
-        public void arrow2()
-        {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-            Point sTest = new Point(x1, y2);
-            Point eTest = new Point(x1 + 10, y2 + 10);
+            eTest = new Point(x1 + 10, y2 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
 

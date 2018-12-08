@@ -47,6 +47,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
+                drawArrow();
             }
         }
 
@@ -59,6 +60,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
+                drawArrow();
             }
         }
 
@@ -72,6 +74,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
+                drawArrow();
             }
         }
 
@@ -91,16 +94,27 @@ namespace DiagramToolkit.Sequences
             this.Y += yAmount;
         }
 
-        public Point Startpoint;
-        public Point Endpoint;
-
         public void drawBox()
         {
-            this.pen = new Pen(Color.Red);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
             xTest = Width + X;
             this.Graphics.DrawRectangle(pen, xTest, Y, 10, 30);
+        }
+
+        public int x1;
+        public int y1;
+        public int x2;
+        public int y2;
+
+        public void drawArrow()
+        {
+            x1 = X + Width;
+            y1 = Y;
+            Point sTest = new Point(x1, y1);
+            Point eTest = new Point(x1 - 10, y1 - 10);
+            this.Graphics.DrawLine(pen, sTest, eTest);
+
+            eTest = new Point(x1 - 10, y1 + 10);
+            this.Graphics.DrawLine(pen, sTest, eTest); 
         }
     }
 }

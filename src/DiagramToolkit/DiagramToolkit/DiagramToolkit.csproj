@@ -94,6 +94,12 @@
     <Compile Include="States\EditState.cs" />
     <Compile Include="States\PreviewState.cs" />
     <Compile Include="States\StaticState.cs" />
+    <Compile Include="Tools\MessageToSelfTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ObjectMessageTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Tools\SelectionTool.cs">
       <SubType>Component</SubType>
     </Compile>
