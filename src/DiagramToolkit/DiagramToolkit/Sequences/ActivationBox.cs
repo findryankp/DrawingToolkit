@@ -91,18 +91,24 @@ namespace DiagramToolkit.Sequences
             this.Y += yAmount;
         }
 
-        public Point Startpoint;
-        public Point Endpoint;
+        public int x1;
+        public int y1;
+        public int x2;
+        public int y2;
 
         public void drawLine()
         {
             this.pen = new Pen(Color.Red);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
-            xTest = (Width / 2) + X;
-            yTest = Height + Y;
-            hTest = Width + Width;
-            this.Graphics.DrawRectangle(pen, xTest, yTest, 1, hTest);
+
+            x1 = (Width / 2) + X;
+            y1 = Height + Y;
+            y2 = Width * 2;
+
+            Point sTest = new Point(x1, y1);
+            Point eTest = new Point(x1, y2);
+            this.Graphics.DrawLine(pen, sTest, eTest);
         }
     }
 }
