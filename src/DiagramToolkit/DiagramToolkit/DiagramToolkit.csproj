@@ -85,7 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\ActivationBox.cs" />
     <Compile Include="Shapes\CircleState.cs" />
+    <Compile Include="Shapes\ObjectMessage.cs" />
     <Compile Include="Shapes\RectangleState.cs" />
     <Compile Include="Shapes\StateLineSegment.cs" />
     <Compile Include="States\EditState.cs" />
