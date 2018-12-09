@@ -63,6 +63,26 @@ namespace DiagramToolkit {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap activation_box {
+            get {
+                object obj = ResourceManager.GetObject("activation_box", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap aktor {
+            get {
+                object obj = ResourceManager.GetObject("aktor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bounding_box {
             get {
                 object obj = ResourceManager.GetObject("bounding_box", resourceCulture);
@@ -73,9 +93,9 @@ namespace DiagramToolkit {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_icon {
+        internal static System.Drawing.Bitmap circled {
             get {
-                object obj = ResourceManager.GetObject("circle_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("circled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +156,36 @@ namespace DiagramToolkit {
         internal static System.Drawing.Bitmap font {
             get {
                 object obj = ResourceManager.GetObject("font", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap messageTo_self {
+            get {
+                object obj = ResourceManager.GetObject("messageTo_self", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap objectbox_ {
+            get {
+                object obj = ResourceManager.GetObject("objectbox_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap objectTool {
+            get {
+                object obj = ResourceManager.GetObject("objectTool", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace DiagramToolkit.Sequences
+namespace DiagramToolkit.Shapes
 {
-    public class MessageToSelf : DrawingObject
+    public class Actor : DrawingObject
     {
         private const double EPSILON = 3.0;
 
@@ -14,19 +14,19 @@ namespace DiagramToolkit.Sequences
 
         private Pen pen;
 
-        public MessageToSelf()
+        public Actor()
         {
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
         }
 
-        public MessageToSelf(Point startpoint) :
+        public Actor(Point startpoint) :
             this()
         {
             this.Startpoint = startpoint;
         }
 
-        public MessageToSelf(Point startpoint, Point endpoint) :
+        public Actor(Point startpoint, Point endpoint) :
             this(startpoint)
         {
             this.Endpoint = endpoint;
@@ -40,11 +40,9 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
-                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawSecondLine();
-                arrow();
             }
         }
 
@@ -56,11 +54,9 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
-                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawSecondLine();
-                arrow();
             }
         }
 
@@ -72,17 +68,20 @@ namespace DiagramToolkit.Sequences
 
             if (this.Graphics != null)
             {
-                Point eTest = new Point(Endpoint.X, Startpoint.Y);
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawSecondLine();
-                arrow();
             }
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            if ((xTest >= Startpoint.X && xTest <= (Endpoint.X+Startpoint.X)) && (yTest >= Startpoint.Y && yTest <= (Endpoint.Y + Startpoint.Y)))
+            x1 = Startpoint.X;
+            y1 = Startpoint.Y;
+            x2 = Endpoint.X;
+            y2 = Endpoint.Y;
+
+            if ((xTest >= (x1-10) && xTest <= (x1+10)) && (yTest >= y1 && yTest <= (y2 +10)))
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -113,28 +112,39 @@ namespace DiagramToolkit.Sequences
             y1 = Startpoint.Y;
             x2 = Endpoint.X;
             y2 = Endpoint.Y;
-            Point sTest = new Point(x2, y1);
-            Point eTest = new Point(x2, y2);
+
+            //garis pusat
+            Point sTest = new Point(x1, y1);
+            Point eTest = new Point(x1, y2);
             this.Graphics.DrawLine(pen, sTest, eTest);
 
-            sTest = new Point(x2, y2);
-            eTest = new Point(x1, y2);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-        }
-
-        public void arrow()
-        {
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-            Point sTest = new Point(x1, y2);
-            Point eTest = new Point(x1 + 10, y2 - 10);
+            //kaki kiri
+            sTest = new Point(x1, y2);
+            eTest = new Point(x1 - 10, y2 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
 
+            //kaki kanan
+            sTest = new Point(x1, y2);
             eTest = new Point(x1 + 10, y2 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
-        }
 
+            //tangan kiri
+            sTest = new Point(x1, y1);
+            eTest = new Point(x1 - 10, y1);
+            this.Graphics.DrawLine(pen, sTest, eTest);
+
+            //tangan kanan
+            sTest = new Point(x1, y1);
+            eTest = new Point(x1 + 10, y1);
+            this.Graphics.DrawLine(pen, sTest, eTest);
+
+            //leher
+            sTest = new Point(x1, y1);
+            eTest = new Point(x1, y1 - 5);
+            this.Graphics.DrawLine(pen, sTest, eTest);
+
+            //kepala
+            this.Graphics.DrawEllipse(pen, x1 - 10, y1 - 25, 20, 20);
+        }
     }
 }

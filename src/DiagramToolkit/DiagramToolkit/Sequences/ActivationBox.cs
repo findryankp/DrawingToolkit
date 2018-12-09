@@ -98,10 +98,6 @@ namespace DiagramToolkit.Sequences
 
         public void drawLine()
         {
-            this.pen = new Pen(Color.Red);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-
             x1 = (Width / 2) + X;
             y1 = Height + Y;
             y2 = Width * 2;

@@ -39,7 +39,7 @@ namespace DiagramToolkit.Tools
             {
                 this.Name = "Message To Self tool";
                 this.ToolTipText = "Message To Self tool";
-                this.Image = IconSet.diagonal_line;
+                this.Image = IconSet.messageTo_self;
                 this.CheckOnClick = true;
             }
 

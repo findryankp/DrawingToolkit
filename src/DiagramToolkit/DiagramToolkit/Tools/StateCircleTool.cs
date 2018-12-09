@@ -40,7 +40,7 @@ namespace DiagramToolkit.Tools
         {
             this.Name = "State Circle Tool";
             this.ToolTipText = "State Circle Tool";
-            this.Image = IconSet.circle_icon;
+            this.Image = IconSet.circled;
             this.CheckOnClick = true;
         }
 

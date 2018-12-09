@@ -87,20 +87,23 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new StateCircleTool());
             //sequence
             this.toolbox.AddSeparator();
+            this.toolbox.AddTool(new ActorTool());
+            this.toolbox.AddTool(new ActivationBoxTool());
             this.toolbox.AddTool(new ObjectMessageTool());
             this.toolbox.AddTool(new MessageToSelfTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion
 
+
             #region Toolbar
             // Initializing toolbar
-            Debug.WriteLine("Loading toolbar...");
-            this.toolbar = new DefaultToolbar();
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add((Control)this.toolbar);
+            //Debug.WriteLine("Loading toolbar...");
+            //this.toolbar = new DefaultToolbar();
+            //this.toolStripContainer1.TopToolStripPanel.Controls.Add((Control)this.toolbar);
 
-            this.toolbar.AddToolbarItem(new ExampleToolbarItem());
-            this.toolbar.AddSeparator();
-            this.toolbar.AddToolbarItem(new ExampleToolbarItem());
+            //this.toolbar.AddToolbarItem(new ExampleToolbarItem());
+            //this.toolbar.AddSeparator();
+            //this.toolbar.AddToolbarItem(new ExampleToolbarItem());
             #endregion
 
             #region Menubar

@@ -1,13 +1,18 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using DiagramToolkit.Shapes;
+using DiagramToolkit.States;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using DiagramToolkit.Sequences;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Tools
 {
-    class ObjectMessageTool : ToolStripButton, ITool
+    public class ActorTool : ToolStripButton, ITool
     {
         private ICanvas varCanvas;
-        private ObjectMessage objectMessage;
+        private Actor actor;
 
         public Cursor Cursor
         {
@@ -30,11 +35,11 @@ namespace DiagramToolkit.Tools
             }
         }
 
-        public ObjectMessageTool()
+        public ActorTool()
         {
-            this.Name = "Object Message tool";
-            this.ToolTipText = "Object Message tool";
-            this.Image = IconSet.objectbox_;
+            this.Name = "Actor tool";
+            this.ToolTipText = "Actor tool";
+            this.Image = IconSet.aktor;
             this.CheckOnClick = true;
         }
 
@@ -57,8 +62,9 @@ namespace DiagramToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                objectMessage = new ObjectMessage(e.X, e.Y);
-                this.varCanvas.AddDrawingObject(this.objectMessage);
+                actor = new Actor(new System.Drawing.Point(e.X, e.Y));
+                actor.Endpoint = new System.Drawing.Point(e.X, e.Y);
+                varCanvas.AddDrawingObject(actor);
             }
         }
 
@@ -66,16 +72,9 @@ namespace DiagramToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (this.objectMessage != null)
+                if (this.actor != null)
                 {
-                    int width = e.X - this.objectMessage.X;
-                    int height = e.Y - this.objectMessage.Y;
-
-                    if (width > 0 && height > 0)
-                    {
-                        this.objectMessage.Width = width;
-                        this.objectMessage.Height = height;
-                    }
+                    actor.Endpoint = new System.Drawing.Point(e.X, e.Y);
                 }
             }
         }
@@ -84,16 +83,10 @@ namespace DiagramToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (objectMessage != null)
+                if (this.actor != null)
                 {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        this.objectMessage.Select();
-                    }
-                    else if (e.Button == MouseButtons.Right)
-                    {
-                        varCanvas.RemoveDrawingObject(this.objectMessage);
-                    }
+                    actor.Endpoint = new System.Drawing.Point(e.X, e.Y);
+                    actor.Select();
                 }
             }
         }
