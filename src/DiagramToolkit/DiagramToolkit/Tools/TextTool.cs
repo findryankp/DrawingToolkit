@@ -49,7 +49,8 @@ namespace DiagramToolkit.Tools
             {
                 text = new Text();
                 text.Value = "Text";
-                text.Position = new System.Drawing.PointF((float)e.X, (float)e.Y);
+                text.X = e.X;
+                text.Y = e.Y;
 
                 DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
 
@@ -81,17 +82,17 @@ namespace DiagramToolkit.Tools
 
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         public void ToolHotKeysDown(object sender, Keys e)
         {
-            throw new NotImplementedException();
+
         }
     }
 }
