@@ -20,6 +20,8 @@ namespace DiagramToolkit.Sequences
         public int wTest;
         public int hTest;
 
+        private SizeF textSize;
+
         public ActivationBox()
         {
             this.pen = new Pen(Color.Black);
@@ -46,9 +48,19 @@ namespace DiagramToolkit.Sequences
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                DrawText();
+                if (Width < textSize.Width)
+                {
+                    int a = (int)textSize.Width;
+                    Width = a + 8;
+                }
+                if (Height < textSize.Height)
+                {
+                    int a = (int)textSize.Height;
+                    Height = a + 8;
+                }
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
-                DrawText();
             }
         }
 
@@ -59,9 +71,20 @@ namespace DiagramToolkit.Sequences
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                DrawText();
+                if (Width < textSize.Width)
+                {
+                    int a = (int)textSize.Width;
+                    Width = a + 8;
+                }
+                if (Height < textSize.Height)
+                {
+                    int a = (int)textSize.Height;
+                    Height = a + 8;
+                }
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
-                DrawText();
+                
             }
         }
 
@@ -73,9 +96,20 @@ namespace DiagramToolkit.Sequences
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                DrawText();
+                if(Width < textSize.Width)
+                {
+                    int a = (int)textSize.Width;
+                    Width = a + 8;
+                }
+                if(Height< textSize.Height)
+                {
+                    int a = (int)textSize.Height;
+                    Height = a + 8;
+                }
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
-                DrawText();
+                
             }
         }
 
@@ -130,13 +164,16 @@ namespace DiagramToolkit.Sequences
                GraphicsUnit.Pixel);
 
             
-            string text = "Text ku tercinta";
+            string text = "Value";
+            textSize = this.Graphics.MeasureString(text, font);
+            Debug.WriteLine("TEXTSIZE " + textSize.Width);
 
-            int pos1 = (Width / 2) + X;
-            int pos2 = (Height / 2) + Y;
-            Point aaa = new Point(pos1, pos2);
+            float pos1 = ((Width - textSize.Width)/2) + X;
+            float pos2 = ((Height - textSize.Height) / 2) + Y;
+            PointF aaa = new PointF(pos1, pos2);
 
             this.Graphics.DrawString(text, font, brush, aaa);
+            
         }
 
         public override bool Add(DrawingObject obj)

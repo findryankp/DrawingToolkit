@@ -14,6 +14,8 @@ namespace DiagramToolkit.Sequences
 
         private Pen pen;
 
+        private SizeF textSize;
+
         public int xTest;
         public int yTest;
         public int wTest;
@@ -134,11 +136,12 @@ namespace DiagramToolkit.Sequences
                FontStyle.Regular,
                GraphicsUnit.Pixel);
 
-            string text = "Text ku tercinta";
+            string text = "Value";
+            textSize = this.Graphics.MeasureString(text, font);
 
-            int pos1 = X;
-            int pos2 = Y - 20;
-            Point aaa = new Point(pos1, pos2);
+            float pos1 = ((Width - textSize.Width) / 2) + X;
+            float pos2 = Y - 20;
+            PointF aaa = new PointF(pos1, pos2);
 
             this.Graphics.DrawString(text, font, brush, aaa);
         }

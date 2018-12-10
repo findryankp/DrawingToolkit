@@ -42,6 +42,7 @@ namespace DiagramToolkit.Shapes
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                DrawText();
                 drawSecondLine();
                 drawLifeLine();
             }
@@ -57,6 +58,7 @@ namespace DiagramToolkit.Shapes
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                DrawText();
                 drawSecondLine();
                 drawLifeLine();
             }
@@ -72,6 +74,7 @@ namespace DiagramToolkit.Shapes
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                DrawText();
                 drawSecondLine();
                 drawLifeLine();
             }
@@ -161,9 +164,33 @@ namespace DiagramToolkit.Shapes
             x2 = Endpoint.X;
             y2 = Endpoint.Y;
 
-            Point sTest = new Point(x1, y2 + 10);
+            Point sTest = new Point(x1, y2 + 27);
             Point eTest = new Point(x1, 500);
             this.Graphics.DrawLine(pen, sTest, eTest);
+        }
+
+        private SizeF textSize;
+        private Brush brush;
+        private Font font;
+        public void DrawText()
+        {
+            this.brush = new SolidBrush(Color.Black);
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            font = new Font(
+               fontFamily,
+               12,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
+
+            string text = "Actor";
+            textSize = this.Graphics.MeasureString(text, font);
+
+            float pos1 = Startpoint.X-(textSize.Width / 2);
+            float pos2 = Endpoint.Y + 10;
+            PointF aaa = new PointF(pos1, pos2);
+
+            this.Graphics.DrawString(text, font, brush, aaa);
         }
 
         public override bool Add(DrawingObject obj)
