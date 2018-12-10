@@ -91,6 +91,7 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new ActivationBoxTool());
             this.toolbox.AddTool(new ObjectMessageTool());
             this.toolbox.AddTool(new MessageToSelfTool());
+            this.toolbox.AddTool(new ReturnMessageTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion
 

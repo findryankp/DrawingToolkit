@@ -89,6 +89,7 @@
     <Compile Include="Sequences\Actor.cs" />
     <Compile Include="Sequences\MessageToSelf.cs" />
     <Compile Include="Sequences\ObjectMessage.cs" />
+    <Compile Include="Sequences\ReturnMessage.cs" />
     <Compile Include="Shapes\CircleState.cs" />
     <Compile Include="Shapes\RectangleState.cs" />
     <Compile Include="Shapes\StateLine.cs" />
@@ -105,6 +106,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\ObjectMessageTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ReturnMessageTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\SelectionTool.cs">

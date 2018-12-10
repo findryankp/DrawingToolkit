@@ -98,12 +98,16 @@ namespace DiagramToolkit.Sequences
 
         public void drawLine()
         {
+            this.pen = new Pen(Color.Black);
+            pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.DashDotDot;
+
             x1 = (Width / 2) + X;
             y1 = Height + Y;
             y2 = Width * 2;
 
             Point sTest = new Point(x1, y1);
-            Point eTest = new Point(x1, y2);
+            Point eTest = new Point(x1, 500);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
     }

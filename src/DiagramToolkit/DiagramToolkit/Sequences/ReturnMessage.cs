@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Shapes
 {
-    public class Actor : DrawingObject
+    public class ReturnMessage : DrawingObject
     {
         private const double EPSILON = 3.0;
 
@@ -14,19 +14,19 @@ namespace DiagramToolkit.Shapes
 
         private Pen pen;
 
-        public Actor()
+        public ReturnMessage()
         {
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
         }
 
-        public Actor(Point startpoint) :
+        public ReturnMessage(Point startpoint) :
             this()
         {
             this.Startpoint = startpoint;
         }
 
-        public Actor(Point startpoint, Point endpoint) :
+        public ReturnMessage(Point startpoint, Point endpoint) :
             this(startpoint)
         {
             this.Endpoint = endpoint;
@@ -36,14 +36,13 @@ namespace DiagramToolkit.Shapes
         {
             pen.Color = Color.Black;
             pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
+            pen.DashStyle = DashStyle.DashDotDot;
 
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
-                drawSecondLine();
-                drawLifeLine();
+                drawArrow();
             }
         }
 
@@ -51,14 +50,13 @@ namespace DiagramToolkit.Shapes
         {
             pen.Color = Color.Blue;
             pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
+            pen.DashStyle = DashStyle.DashDotDot;
 
             if (this.Graphics != null)
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
-                drawSecondLine();
-                drawLifeLine();
+                drawArrow();
             }
         }
 
@@ -72,19 +70,17 @@ namespace DiagramToolkit.Shapes
             {
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
-                drawSecondLine();
-                drawLifeLine();
+                drawArrow();
             }
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
+            double m = GetSlope();
+            double b = Endpoint.Y - m * Endpoint.X;
+            double y_point = m * xTest + b;
 
-            if ((xTest >= (x1-10) && xTest <= (x1+10)) && (yTest >= y1 && yTest <= (y2 +10)))
+            if (Math.Abs(yTest - y_point) < EPSILON)
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -109,60 +105,22 @@ namespace DiagramToolkit.Shapes
         public int x2;
         public int y2;
 
-        public void drawSecondLine()
+        public void drawArrow()
         {
             x1 = Startpoint.X;
             y1 = Startpoint.Y;
             x2 = Endpoint.X;
             y2 = Endpoint.Y;
 
-            //garis pusat
             Point sTest = new Point(x1, y1);
-            Point eTest = new Point(x1, y2);
+            Point eTest = new Point(x2, y1);
             this.Graphics.DrawLine(pen, sTest, eTest);
 
-            //kaki kiri
-            sTest = new Point(x1, y2);
-            eTest = new Point(x1 - 10, y2 + 10);
+            sTest = new Point(x2, y1);
+            eTest = new Point(x2 + 10, y1 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
 
-            //kaki kanan
-            sTest = new Point(x1, y2);
-            eTest = new Point(x1 + 10, y2 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-
-            //tangan kiri
-            sTest = new Point(x1, y1);
-            eTest = new Point(x1 - 10, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-
-            //tangan kanan
-            sTest = new Point(x1, y1);
-            eTest = new Point(x1 + 10, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-
-            //leher
-            sTest = new Point(x1, y1);
-            eTest = new Point(x1, y1 - 5);
-            this.Graphics.DrawLine(pen, sTest, eTest);
-
-            //kepala
-            this.Graphics.DrawEllipse(pen, x1 - 10, y1 - 25, 20, 20);
-        }
-
-        public void drawLifeLine()
-        {
-            pen.Color = Color.Black;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-
-            Point sTest = new Point(x1, y2 + 10);
-            Point eTest = new Point(x1, 500);
+            eTest = new Point(x2 + 10, y1 - 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
     }
