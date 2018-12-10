@@ -96,5 +96,15 @@ namespace DiagramToolkit.Shapes
             this.Startpoint = new Point(this.Startpoint.X + xAmount, this.Startpoint.Y + yAmount);
             this.Endpoint = new Point(this.Endpoint.X + xAmount, this.Endpoint.Y + yAmount);
         }
+
+        public override bool Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

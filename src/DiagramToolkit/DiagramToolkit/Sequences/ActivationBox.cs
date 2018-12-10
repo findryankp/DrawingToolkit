@@ -110,5 +110,15 @@ namespace DiagramToolkit.Sequences
             Point eTest = new Point(x1, 500);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
+
+        public override bool Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -85,6 +85,7 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new StateLineTool());
             this.toolbox.AddTool(new StateRectangleTool());
             this.toolbox.AddTool(new StateCircleTool());
+            this.toolbox.AddTool(new TextTool());
             //sequence
             this.toolbox.AddSeparator();
             this.toolbox.AddTool(new ActorTool());

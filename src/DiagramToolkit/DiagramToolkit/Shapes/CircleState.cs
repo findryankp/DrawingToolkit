@@ -85,5 +85,15 @@ namespace DiagramToolkit.Shapes
             this.cirX += xAmount;
             this.cirY += yAmount;
         }
+
+        public override bool Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

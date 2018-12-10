@@ -93,6 +93,7 @@
     <Compile Include="Shapes\CircleState.cs" />
     <Compile Include="Shapes\RectangleState.cs" />
     <Compile Include="Shapes\StateLine.cs" />
+    <Compile Include="Shapes\Text.cs" />
     <Compile Include="States\EditState.cs" />
     <Compile Include="States\PreviewState.cs" />
     <Compile Include="States\StaticState.cs" />
@@ -121,6 +122,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\StateRectangleTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\TextTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="IconSet.resx">

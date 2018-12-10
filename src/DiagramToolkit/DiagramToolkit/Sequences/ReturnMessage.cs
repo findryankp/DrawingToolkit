@@ -123,5 +123,15 @@ namespace DiagramToolkit.Shapes
             eTest = new Point(x2 + 10, y1 - 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
         }
+
+        public override bool Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
