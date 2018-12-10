@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using DiagramToolkit.Shapes;
 
 namespace DiagramToolkit.Sequences
 {
@@ -47,6 +48,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
+                DrawText();
             }
         }
 
@@ -59,6 +61,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
+                DrawText();
             }
         }
 
@@ -72,6 +75,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
                 drawLine();
+                DrawText();
             }
         }
 
@@ -109,6 +113,30 @@ namespace DiagramToolkit.Sequences
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x1, 500);
             this.Graphics.DrawLine(pen, sTest, eTest);
+        }
+
+        private Brush brush;
+        private Font font;
+
+        public void DrawText()
+        {
+            this.brush = new SolidBrush(Color.Black);
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            font = new Font(
+               fontFamily,
+               16,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
+
+            
+            string text = "Text ku tercinta";
+
+            int pos1 = (Width / 2) + X;
+            int pos2 = (Height / 2) + Y;
+            Point aaa = new Point(pos1, pos2);
+
+            this.Graphics.DrawString(text, font, brush, aaa);
         }
 
         public override bool Add(DrawingObject obj)

@@ -40,6 +40,7 @@ namespace DiagramToolkit.Shapes
         public override void RenderOnEditingView()
         {
             this.Graphics.DrawString(Value, font, brush, Position);
+            
         }
 
         public override void RenderOnPreview()

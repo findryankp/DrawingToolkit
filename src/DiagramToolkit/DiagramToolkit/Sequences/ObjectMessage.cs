@@ -48,6 +48,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
+                DrawText();
             }
         }
 
@@ -61,6 +62,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
+                DrawText();
             }
         }
 
@@ -75,6 +77,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
+                DrawText();
             }
         }
 
@@ -115,6 +118,29 @@ namespace DiagramToolkit.Sequences
 
             eTest = new Point(x1 - 10, y1 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest); 
+        }
+
+        private Brush brush;
+        private Font font;
+
+        public void DrawText()
+        {
+            this.brush = new SolidBrush(Color.Black);
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            font = new Font(
+               fontFamily,
+               12,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
+
+            string text = "Text ku tercinta";
+
+            int pos1 = X;
+            int pos2 = Y - 20;
+            Point aaa = new Point(pos1, pos2);
+
+            this.Graphics.DrawString(text, font, brush, aaa);
         }
 
         public override bool Add(DrawingObject obj)
