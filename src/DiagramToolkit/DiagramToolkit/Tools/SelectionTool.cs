@@ -68,6 +68,10 @@ namespace DiagramToolkit.Tools
                 canvas.DeselectAllObjects();
                 selectedObject = canvas.SelectObjectAt(e.X, e.Y);
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                canvas.RemoveDrawingObject(this.selectedObject);
+            }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
