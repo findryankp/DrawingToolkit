@@ -18,6 +18,7 @@ namespace DiagramToolkit
         void ToolMouseDown(object sender, MouseEventArgs e);
         void ToolMouseUp(object sender, MouseEventArgs e);
         void ToolMouseMove(object sender, MouseEventArgs e);
+        void ToolMouseDoubleClick(object sender, MouseEventArgs e);
 
         void ToolKeyUp(object sender, KeyEventArgs e);
         void ToolKeyDown(object sender, KeyEventArgs e);

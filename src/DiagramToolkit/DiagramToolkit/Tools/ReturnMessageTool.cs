@@ -14,6 +14,7 @@ namespace DiagramToolkit.Tools
     {
         private ICanvas varCanvas;
         private ReturnMessage returnMessage;
+        private Text text;
 
         public Cursor Cursor
         {
@@ -65,8 +66,13 @@ namespace DiagramToolkit.Tools
             {
                 returnMessage = new ReturnMessage(new System.Drawing.Point(e.X, e.Y));
                 returnMessage.Endpoint = new System.Drawing.Point(e.X, e.Y);
-                varCanvas.AddDrawingObject(returnMessage);
+                varCanvas.AddDrawingObject(returnMessage);                
             }
+        }
+
+        public void drawText()
+        {
+
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
@@ -88,8 +94,21 @@ namespace DiagramToolkit.Tools
                 {
                     returnMessage.Endpoint = new System.Drawing.Point(e.X, e.Y);
                     returnMessage.Select();
+
+                    //drawText
+                    text = new Text();
+                    text.Value = "Text";
+                    int newX = (int)ReturnMessage.xText;
+                    text.X = newX;
+                    text.Y = e.Y-20;
+                    varCanvas.AddDrawingObject(text);
                 }
             }
+        }
+
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

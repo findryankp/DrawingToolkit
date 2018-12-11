@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DiagramToolkit.Shapes;
 
 namespace DiagramToolkit.Tools
 {
@@ -13,6 +15,7 @@ namespace DiagramToolkit.Tools
         private DrawingObject selectedObject;
         private int xInitial;
         private int yInitial;
+        private Text text;
 
         public Cursor Cursor
         {
@@ -89,6 +92,41 @@ namespace DiagramToolkit.Tools
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private string passingText;
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Debug.WriteLine("selection tool double click");
+
+            text = new Text();
+            text.X = e.X;
+            text.Y = e.Y;
+
+            //DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+            DrawingObject obj = canvas.GetObjectAt(e.X, e.Y);
+
+            if (obj == null)
+            {
+                //canvas.AddDrawingObject(text);
+            }
+            else
+            {
+                passingText = obj.GetText();
+                using (Form1 form2 = new Form1(passingText, obj, canvas))
+                {
+                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        form2.ShowDialog();
+                    }
+                }
+                bool allowed = obj.Add(text);
+
+                if (!allowed)
+                {
+                    //canvas.AddDrawingObject(text);
+                }
+            }
         }
     }
 }

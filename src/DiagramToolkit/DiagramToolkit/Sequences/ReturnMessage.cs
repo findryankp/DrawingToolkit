@@ -12,6 +12,9 @@ namespace DiagramToolkit.Shapes
         public Point Startpoint { get; set; }
         public Point Endpoint { get; set; }
 
+        public static float xText;
+        public static int ytext;
+
         private Pen pen;
 
         public ReturnMessage()
@@ -43,6 +46,7 @@ namespace DiagramToolkit.Shapes
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
+                getTextPosition();
             }
         }
 
@@ -57,6 +61,7 @@ namespace DiagramToolkit.Shapes
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
+                getTextPosition();
             }
         }
 
@@ -71,6 +76,7 @@ namespace DiagramToolkit.Shapes
                 this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
+                getTextPosition();
             }
         }
 
@@ -122,6 +128,11 @@ namespace DiagramToolkit.Shapes
 
             eTest = new Point(x2 + 10, y1 - 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
+        }
+
+        public void getTextPosition()
+        {
+            xText = (((Startpoint.X - Endpoint.X)-Text.Textlenght) / 4)+Endpoint.X;
         }
 
         public override bool Add(DrawingObject obj)

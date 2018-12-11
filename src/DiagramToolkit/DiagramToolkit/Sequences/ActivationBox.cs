@@ -152,6 +152,7 @@ namespace DiagramToolkit.Sequences
         private Brush brush;
         private Font font;
 
+        private string text;
         public void DrawText()
         {
             this.brush = new SolidBrush(Color.Black);
@@ -164,7 +165,7 @@ namespace DiagramToolkit.Sequences
                GraphicsUnit.Pixel);
 
             
-            string text = "Value";
+            text = "Value";
             textSize = this.Graphics.MeasureString(text, font);
             Debug.WriteLine("TEXTSIZE " + textSize.Width);
 
@@ -188,12 +189,12 @@ namespace DiagramToolkit.Sequences
 
         public override string GetText()
         {
-            throw new NotImplementedException();
+            return this.text;
         }
 
         public override void SetText(string s)
         {
-            throw new NotImplementedException();
+            this.text = s;
         }
     }
 }

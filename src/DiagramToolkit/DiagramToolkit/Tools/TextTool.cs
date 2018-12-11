@@ -47,38 +47,6 @@ namespace DiagramToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-
-            if (e.Button == MouseButtons.Right && canvas != null)
-            {
-                text = new Text();
-                text.X = e.X;
-                text.Y = e.Y;
-
-                //DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
-                DrawingObject obj = canvas.GetObjectAt(e.X, e.Y);
-
-                if (obj == null)
-                {
-                    //canvas.AddDrawingObject(text);
-                }
-                else
-                {
-                    passingText = obj.GetText();
-                    using (Form1 form2 = new Form1(passingText, obj, canvas))
-                    {
-                        if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        {
-                            form2.ShowDialog();
-                        }
-                    }
-                    bool allowed = obj.Add(text);
-
-                    if (!allowed)
-                    {
-                        //canvas.AddDrawingObject(text);
-                    }
-                }
-            }
             if (e.Button == MouseButtons.Left)
             {
                 text = new Text();

@@ -91,5 +91,10 @@ namespace DiagramToolkit.Tools
                 //canvas.AddDrawingObject(this.varCircleState);
             }
         }
+
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

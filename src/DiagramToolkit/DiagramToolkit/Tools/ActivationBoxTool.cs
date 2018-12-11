@@ -98,5 +98,10 @@ namespace DiagramToolkit.Tools
         {
             throw new NotImplementedException();
         }
+
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

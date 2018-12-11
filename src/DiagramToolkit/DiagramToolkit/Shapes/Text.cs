@@ -14,6 +14,8 @@ namespace DiagramToolkit.Shapes
         private Font font;
         private SizeF textSize;
 
+        public static float Textlenght;
+
         public Text()
         {
             this.text = "Ediedeit";
@@ -51,19 +53,21 @@ namespace DiagramToolkit.Shapes
         {
             this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
             textSize = this.Graphics.MeasureString(this.text, font);
-
+            Textlenght = textSize.Width;
         }
 
         public override void RenderOnPreview()
         {
             this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
             textSize = this.Graphics.MeasureString(this.text, font);
+            Textlenght = textSize.Width;
         }
 
         public override void RenderOnStaticView()
         {
             this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
             textSize = this.Graphics.MeasureString(this.text, font);
+            Textlenght = textSize.Width;
         }
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
