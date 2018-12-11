@@ -18,7 +18,7 @@ namespace DiagramToolkit.Shapes
 
         public Text()
         {
-            this.text = "Ediedeit";
+            this.text = "Edit";
             this.brush = new SolidBrush(Color.Black);
 
             FontFamily fontFamily = new FontFamily("Arial");

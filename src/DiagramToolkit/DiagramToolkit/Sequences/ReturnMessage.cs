@@ -13,7 +13,7 @@ namespace DiagramToolkit.Shapes
         public Point Endpoint { get; set; }
 
         public static float xText;
-        public static int ytext;
+        public static float yText;
 
         private Pen pen;
 
@@ -132,7 +132,8 @@ namespace DiagramToolkit.Shapes
 
         public void getTextPosition()
         {
-            xText = (((Startpoint.X - Endpoint.X)-Text.Textlenght) / 4)+Endpoint.X;
+            xText = (((Startpoint.X - Endpoint.X)*2-(Text.Textlenght*2)) / 8)+Endpoint.X;
+            yText = Startpoint.Y - 20;
         }
 
         public override bool Add(DrawingObject obj)

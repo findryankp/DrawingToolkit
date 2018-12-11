@@ -97,10 +97,11 @@ namespace DiagramToolkit.Tools
 
                     //drawText
                     text = new Text();
-                    text.Value = "Text";
+                    text.Value = "TextAAAAAAAAAAAAA";
                     int newX = (int)ReturnMessage.xText;
+                    int newY = (int)ReturnMessage.yText;
                     text.X = newX;
-                    text.Y = e.Y-20;
+                    text.Y = newY;
                     varCanvas.AddDrawingObject(text);
                 }
             }

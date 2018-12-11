@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiagramToolkit.Shapes;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -45,6 +46,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
+                getTextPosition();
             }
         }
 
@@ -61,6 +63,7 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
+                getTextPosition();
             }
         }
 
@@ -77,12 +80,13 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
+                getTextPosition();
             }
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            if ((xTest >= Startpoint.X && xTest <= (Endpoint.X+Startpoint.X)) && (yTest >= Startpoint.Y && yTest <= (Endpoint.Y + Startpoint.Y)))
+            if ((xTest >= Startpoint.X && xTest <= (Endpoint.X)) && (yTest >= Startpoint.Y && yTest <= (Endpoint.Y)))
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -134,6 +138,15 @@ namespace DiagramToolkit.Sequences
 
             eTest = new Point(x1 + 10, y2 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
+        }
+
+        public static float xText;
+        public static float yText;
+
+        public void getTextPosition()
+        {
+            xText = Endpoint.X;
+            yText = ((Startpoint.Y- Endpoint.Y)*2 / 4)+ Endpoint.Y;
         }
 
         public override bool Add(DrawingObject obj)
