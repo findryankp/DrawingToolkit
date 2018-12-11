@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
+using System;
+using System.Linq;
+using DiagramToolkit.States;
 
 namespace DiagramToolkit.Tools
 {
@@ -11,8 +11,11 @@ namespace DiagramToolkit.Tools
     {
         private ICanvas canvas;
         private DrawingObject selectedObject;
-        private int xInitial;
-        private int yInitial;
+
+        Point point;
+        private Boolean multiSelect = false;
+
+        private List<DrawingObject> tempGroup = new List<DrawingObject>();
 
         public Cursor Cursor
         {
@@ -50,23 +53,58 @@ namespace DiagramToolkit.Tools
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                multiSelect = true;
+            }
+            else if (e.KeyCode == Keys.G)
+            {
+                if (tempGroup.Count() > 1)
+                {
+                    DrawingGroup drawingGroup = new DrawingGroup();
+                    foreach (DrawingObject drawingObject in tempGroup)
+                    {
+                        drawingGroup.AddComposite(drawingObject);
+                    }
+                    drawingGroup.ChangeState(StaticState.GetInstance());
+                    this.canvas.AddDrawingObject(drawingGroup);
+                    tempGroup.Clear();
+                }
+            }
         }
 
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                multiSelect = false;
+            }
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            this.xInitial = e.X;
-            this.yInitial = e.Y;
+            point = e.Location;
 
             if (e.Button == MouseButtons.Left && canvas != null)
             {
-                canvas.DeselectAllObjects();
+                if (selectedObject == null)
+                {
+                    canvas.DeselectAllObjects();
+                    tempGroup.Clear();
+                }
+                else if (!multiSelect)
+                {
+                    selectedObject.ChangeState(StaticState.GetInstance());
+                }
                 selectedObject = canvas.SelectObjectAt(e.X, e.Y);
+                if (selectedObject != null)
+                {
+                    selectedObject.ChangeState(EditState.GetInstance());
+                    if (multiSelect)
+                    {
+                        tempGroup.Add(selectedObject);
+                    }
+                }
             }
             else if (e.Button == MouseButtons.Right)
             {
@@ -80,12 +118,10 @@ namespace DiagramToolkit.Tools
             {
                 if (selectedObject != null)
                 {
-                    int xAmount = e.X - xInitial;
-                    int yAmount = e.Y - yInitial;
-                    xInitial = e.X;
-                    yInitial = e.Y;
-
-                    selectedObject.Translate(e.X, e.Y, xAmount, yAmount);
+                    int xAmount = e.X - point.X;
+                    int yAmount = e.Y - point.Y;
+                    point = e.Location;
+                    selectedObject.Translate(e, xAmount, yAmount);
                 }
             }
         }

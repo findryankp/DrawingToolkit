@@ -85,6 +85,7 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new StateLineTool());
             this.toolbox.AddTool(new StateRectangleTool());
             this.toolbox.AddTool(new StateCircleTool());
+            this.toolbox.AddTool(new ConnectorTool());
 
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion

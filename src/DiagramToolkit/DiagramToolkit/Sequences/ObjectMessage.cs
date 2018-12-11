@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Sequences
 {
@@ -85,7 +86,7 @@ namespace DiagramToolkit.Sequences
             return false;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
             this.X += xAmount;
             this.Y += yAmount;
@@ -101,6 +102,11 @@ namespace DiagramToolkit.Sequences
             pen.DashStyle = DashStyle.Solid;
             xTest = Width + X;
             this.Graphics.DrawRectangle(pen, xTest, Y, 10, 30);
+        }
+
+        public override Point GetCenterPoint()
+        {
+            throw new NotImplementedException();
         }
     }
 }

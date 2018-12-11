@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Shapes
 {
     //copy semua sama
     //masukan fungsi draw di circle pada oneditingview
-    public class CircleState : DrawingObject
+    public class CircleState : DrawingObject, IObservable
     {
         public int cirX { get; set; }
         public int cirY { get; set; }
@@ -80,10 +82,19 @@ namespace DiagramToolkit.Shapes
             return false;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
+            Point point = e.Location;
             this.cirX += xAmount;
             this.cirY += yAmount;
+        }
+
+        public override Point GetCenterPoint()
+        {
+            Point point = new Point();
+            point.X = cirX + (cirWidth / 2);
+            point.Y = cirY + (cirHeight / 2);
+            return point;
         }
     }
 }
