@@ -5,6 +5,7 @@ namespace DiagramToolkit.Shapes
 {
     public class Text : DrawingObject
     {
+        public string text;
         public string Value { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
@@ -15,6 +16,7 @@ namespace DiagramToolkit.Shapes
 
         public Text()
         {
+            this.text = "Ediedeit";
             this.brush = new SolidBrush(Color.Black);
 
             FontFamily fontFamily = new FontFamily("Arial");
@@ -47,27 +49,37 @@ namespace DiagramToolkit.Shapes
 
         public override void RenderOnEditingView()
         {
-            this.Graphics.DrawString(Value, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(Value, font);
+            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = this.Graphics.MeasureString(this.text, font);
 
         }
 
         public override void RenderOnPreview()
         {
-            this.Graphics.DrawString(Value, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(Value, font);
+            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = this.Graphics.MeasureString(this.text, font);
         }
 
         public override void RenderOnStaticView()
         {
-            this.Graphics.DrawString(Value, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(Value, font);
+            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = this.Graphics.MeasureString(this.text, font);
         }
 
         public override void Translate(int x, int y, int xAmount, int yAmount)
         {
             X += xAmount;
             Y += yAmount;
+        }
+
+        public override string GetText()
+        {
+            return this.text;
+        }
+
+        public override void SetText(string s)
+        {
+            this.text = s;
         }
     }
 }

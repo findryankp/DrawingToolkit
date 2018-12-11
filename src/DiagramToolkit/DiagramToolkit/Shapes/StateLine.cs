@@ -106,5 +106,15 @@ namespace DiagramToolkit.Shapes
         {
             throw new NotImplementedException();
         }
+
+        public override string GetText()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetText(string s)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -129,5 +129,10 @@ namespace DiagramToolkit
                 drawObj.Deselect();
             }
         }
+
+        public List<DrawingObject> GetAllObject()
+        {
+            return drawingObjects;
+        }
     }
 }

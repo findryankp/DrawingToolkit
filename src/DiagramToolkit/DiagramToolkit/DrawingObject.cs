@@ -9,6 +9,9 @@ namespace DiagramToolkit
         public Guid ID { get; set; }
         public Graphics Graphics { get; set; }
 
+        public abstract string GetText();
+        public abstract void SetText(string s);
+
         public DrawingState State
         {
             get
