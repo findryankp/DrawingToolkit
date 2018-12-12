@@ -22,7 +22,6 @@ namespace DiagramToolkit
         {
             this.drawingObjects = new List<DrawingObject>();
             this.DoubleBuffered = true;
-
             this.BackColor = Color.White;
             this.Dock = DockStyle.Fill;
 
@@ -33,7 +32,29 @@ namespace DiagramToolkit
 
             this.KeyDown += DefaultCanvas_KeyDown;
             this.KeyUp += DefaultCanvas_KeyUp;
+            this.PreviewKeyDown += DefaultCanvas_PreviewKeyDown;
+        }
 
+        private void DefaultCanvas_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.ControlKey:
+                    e.IsInputKey = true;
+                    break;
+                case Keys.Up:
+                    e.IsInputKey = true;
+                    break;
+                case Keys.Down:
+                    e.IsInputKey = true;
+                    break;
+                case Keys.Left:
+                    e.IsInputKey = true;
+                    break;
+                case Keys.Right:
+                    e.IsInputKey = true;
+                    break;
+            }
         }
 
         private void DefaultCanvas_MouseMove(object sender, MouseEventArgs e)
@@ -63,6 +84,15 @@ namespace DiagramToolkit
             }
         }
 
+        private void DefaultCanvas_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (DrawingObject obj in drawingObjects.Reverse<DrawingObject>())
+            {
+                obj.Graphics = e.Graphics;
+                obj.Draw();
+            }
+        }
+
         private void DefaultCanvas_KeyDown(object sender, KeyEventArgs e)
         {
             if (this.activeTool != null)
@@ -75,15 +105,6 @@ namespace DiagramToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolKeyUp(sender, e);
-            }
-        }
-
-        private void DefaultCanvas_Paint(object sender, PaintEventArgs e)
-        {
-            foreach (DrawingObject obj in drawingObjects.Reverse<DrawingObject>())
-            {
-                obj.Graphics = e.Graphics;
-                obj.Draw();
             }
         }
 

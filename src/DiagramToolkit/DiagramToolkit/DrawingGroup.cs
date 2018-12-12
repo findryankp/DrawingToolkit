@@ -96,5 +96,10 @@ namespace DiagramToolkit
                 drawingObject.Deselect();
             }
         }
+
+        public override void Draw()
+        {
+
+        }
     }
 }
