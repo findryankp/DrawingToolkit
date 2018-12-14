@@ -17,6 +17,7 @@ namespace DiagramToolkit
         public Form1(string text, DrawingObject obj, ICanvas canvas)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
             this.textBox1.Text = text;
             this.obj = obj;
             this.canvas = canvas;
