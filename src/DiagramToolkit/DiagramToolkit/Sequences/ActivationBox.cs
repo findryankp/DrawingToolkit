@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using DiagramToolkit.Shapes;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Sequences
 {
@@ -123,7 +124,7 @@ namespace DiagramToolkit.Sequences
             return false;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
             this.X += xAmount;
             this.Y += yAmount;
@@ -147,6 +148,11 @@ namespace DiagramToolkit.Sequences
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x1, 500);
             this.Graphics.DrawLine(pen, sTest, eTest);
+        }
+
+        public override Point GetCenterPoint()
+        {
+            throw new NotImplementedException();
         }
 
         private Brush brush;

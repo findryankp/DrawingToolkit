@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Shapes
 {
@@ -91,8 +92,9 @@ namespace DiagramToolkit.Shapes
             return m;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
+            Point point = e.Location;
             this.Startpoint = new Point(this.Startpoint.X + xAmount, this.Startpoint.Y + yAmount);
             this.Endpoint = new Point(this.Endpoint.X + xAmount, this.Endpoint.Y + yAmount);
         }
@@ -115,6 +117,14 @@ namespace DiagramToolkit.Shapes
         public override void SetText(string s)
         {
             throw new NotImplementedException();
+        }
+
+        public override Point GetCenterPoint()
+        {
+            Point point = new Point();
+            point.X = (Startpoint.X + Endpoint.X) / 2;
+            point.Y = (Startpoint.Y + Endpoint.Y) / 2;
+            return point;
         }
     }
 }

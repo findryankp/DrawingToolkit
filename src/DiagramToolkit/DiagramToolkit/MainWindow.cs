@@ -93,6 +93,8 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new ObjectMessageTool());
             this.toolbox.AddTool(new MessageToSelfTool());
             this.toolbox.AddTool(new ReturnMessageTool());
+            this.toolbox.AddTool(new ConnectorTool());
+
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion
 

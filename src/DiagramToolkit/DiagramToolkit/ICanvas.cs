@@ -18,6 +18,7 @@ namespace DiagramToolkit
 
         void AddDrawingObject(DrawingObject drawingObject);
         void RemoveDrawingObject(DrawingObject drawingObject);
+        void AddDrawingObjectToFront(DrawingObject drawingObject);
 
         DrawingObject GetObjectAt(int x, int y);
         DrawingObject SelectObjectAt(int x, int y);

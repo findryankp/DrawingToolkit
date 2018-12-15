@@ -53,14 +53,7 @@ namespace DiagramToolkit.Tools
             {
                 if (varStateRectangle != null)
                 {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        this.varStateRectangle.Select();
-                    }
-                    else if (e.Button == MouseButtons.Right)
-                    {
-                        varCanvas.RemoveDrawingObject(this.varStateRectangle);
-                    }
+                    this.varStateRectangle.Select();
                 }
             }
         }
@@ -85,17 +78,17 @@ namespace DiagramToolkit.Tools
 
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToolHotKeysDown(object sender, Keys e)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ToolMouseDoubleClick(object sender, MouseEventArgs e)

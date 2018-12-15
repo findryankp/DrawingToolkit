@@ -61,6 +61,7 @@
     <Compile Include="DefaultToolbox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DrawingGroup.cs" />
     <Compile Include="DrawingState.cs" />
     <Compile Include="Example TollbarItem.cs">
       <SubType>Component</SubType>
@@ -80,6 +81,8 @@
     <Compile Include="DrawingObject.cs" />
     <Compile Include="IMenubar.cs" />
     <Compile Include="IMenuItem.cs" />
+    <Compile Include="IObservable.cs" />
+    <Compile Include="IObserver.cs" />
     <Compile Include="ITool.cs" />
     <Compile Include="IToolbar.cs" />
     <Compile Include="IToolbox.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Sequences\ObjectMessage.cs" />
     <Compile Include="Sequences\ReturnMessage.cs" />
     <Compile Include="Shapes\CircleState.cs" />
+    <Compile Include="Shapes\Connector.cs" />
     <Compile Include="Shapes\RectangleState.cs" />
     <Compile Include="Shapes\StateLine.cs" />
     <Compile Include="Shapes\Text.cs" />
@@ -116,6 +120,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\ReturnMessageTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\ConnectorTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\SelectionTool.cs">

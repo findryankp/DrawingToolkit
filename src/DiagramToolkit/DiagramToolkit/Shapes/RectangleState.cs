@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Shapes
 {
@@ -39,7 +40,6 @@ namespace DiagramToolkit.Shapes
             pen.DashStyle = DashStyle.DashDotDot;
             if (this.Graphics != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
             }
         }
@@ -50,7 +50,6 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             if (this.Graphics != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
             }
         }
@@ -62,7 +61,6 @@ namespace DiagramToolkit.Shapes
             pen.DashStyle = DashStyle.Solid;
             if (this.Graphics != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
             }
         }
@@ -77,8 +75,9 @@ namespace DiagramToolkit.Shapes
             return false;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
+            Point point = e.Location;
             this.X += xAmount;
             this.Y += yAmount;
         }
@@ -101,6 +100,14 @@ namespace DiagramToolkit.Shapes
         public override void SetText(string s)
         {
             throw new NotImplementedException();
+        }
+
+        public override Point GetCenterPoint()
+        {
+            Point point = new Point();
+            point.X = X + (Width / 2);
+            point.Y = Y + (Height / 2);
+            return point;
         }
     }
 }
