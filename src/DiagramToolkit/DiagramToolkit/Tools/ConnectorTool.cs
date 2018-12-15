@@ -41,7 +41,7 @@ namespace DiagramToolkit.Tools
         {
             this.Name = "Connector Tool";
             this.ToolTipText = "Connector Tool";
-            this.Image = IconSet.circle_icon;
+            this.Image = IconSet.diskette;
             this.CheckOnClick = true;
         }
 
@@ -97,6 +97,11 @@ namespace DiagramToolkit.Tools
         public void ToolHotKeysDown(object sender, Keys e)
         {
 
+        }
+
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace DiagramToolkit.Shapes
 {
@@ -70,12 +71,6 @@ namespace DiagramToolkit.Shapes
             Textlenght = textSize.Width;
         }
 
-        public override void Translate(int x, int y, int xAmount, int yAmount)
-        {
-            X += xAmount;
-            Y += yAmount;
-        }
-
         public override string GetText()
         {
             return this.text;
@@ -84,6 +79,16 @@ namespace DiagramToolkit.Shapes
         public override void SetText(string s)
         {
             this.text = s;
+        }
+
+        public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Point GetCenterPoint()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

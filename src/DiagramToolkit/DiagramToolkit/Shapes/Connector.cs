@@ -75,5 +75,25 @@ namespace DiagramToolkit.Shapes
             this.startPoint = objectSource.GetCenterPoint();
             this.finishPoint = objectDestination.GetCenterPoint();
         }
+
+        public override string GetText()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetText(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Add(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Remove(DrawingObject obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
