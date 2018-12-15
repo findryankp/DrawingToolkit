@@ -103,6 +103,16 @@ namespace DiagramToolkit {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap conector {
+            get {
+                object obj = ResourceManager.GetObject("conector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cursor {
             get {
                 object obj = ResourceManager.GetObject("cursor", resourceCulture);
@@ -156,6 +166,16 @@ namespace DiagramToolkit {
         internal static System.Drawing.Bitmap font {
             get {
                 object obj = ResourceManager.GetObject("font", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap line_dot {
+            get {
+                object obj = ResourceManager.GetObject("line_dot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

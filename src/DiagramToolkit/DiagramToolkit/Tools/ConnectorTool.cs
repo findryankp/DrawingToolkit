@@ -41,7 +41,7 @@ namespace DiagramToolkit.Tools
         {
             this.Name = "Connector Tool";
             this.ToolTipText = "Connector Tool";
-            this.Image = IconSet.diskette;
+            this.Image = IconSet.conector;
             this.CheckOnClick = true;
         }
 

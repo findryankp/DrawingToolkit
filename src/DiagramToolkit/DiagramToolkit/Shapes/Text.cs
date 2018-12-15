@@ -83,7 +83,8 @@ namespace DiagramToolkit.Shapes
 
         public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
-            throw new System.NotImplementedException();
+            this.X += xAmount;
+            this.Y += yAmount;
         }
 
         public override Point GetCenterPoint()

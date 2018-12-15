@@ -226,6 +226,18 @@
   <ItemGroup>
     <None Include="Resources\objectbox_.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haha.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line_dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\conector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

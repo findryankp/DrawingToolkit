@@ -14,8 +14,6 @@ namespace DiagramToolkit.Tools
         private ICanvas canvas;
         private DrawingObject selectedObject;
 
-        private int xInitial;
-        private int yInitial;
         private Text text;
 
         Point point;

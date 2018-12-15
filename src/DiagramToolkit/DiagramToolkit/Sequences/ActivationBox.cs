@@ -185,12 +185,20 @@ namespace DiagramToolkit.Sequences
 
         public override bool Add(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            return false;
+        }
+        
+        public static float Textlenght;
+        public void setText()
+        {
+            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = this.Graphics.MeasureString(this.text, font);
+            Textlenght = textSize.Width;
         }
 
         public override bool Remove(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override string GetText()

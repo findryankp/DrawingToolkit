@@ -81,6 +81,8 @@ namespace DiagramToolkit
             Debug.WriteLine("Loading tools...");
 
             this.toolbox.AddTool(new SelectionTool());
+            this.toolbox.AddTool(new ConnectorTool());
+            this.toolbox.AddSeparator();
             //state
             this.toolbox.AddTool(new StateLineTool());
             this.toolbox.AddTool(new StateRectangleTool());
@@ -93,7 +95,6 @@ namespace DiagramToolkit
             this.toolbox.AddTool(new ObjectMessageTool());
             this.toolbox.AddTool(new MessageToSelfTool());
             this.toolbox.AddTool(new ReturnMessageTool());
-            this.toolbox.AddTool(new ConnectorTool());
 
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
             #endregion

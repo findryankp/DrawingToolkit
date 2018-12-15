@@ -39,9 +39,9 @@ namespace DiagramToolkit.Tools
 
         public ReturnMessageTool()
         {
-            this.Name = "Stateful Line tool";
-            this.ToolTipText = "Stateful Line tool";
-            this.Image = IconSet.diagonal_line;
+            this.Name = "Return Message tool";
+            this.ToolTipText = "Return Message tool";
+            this.Image = IconSet.line_dot;
             this.CheckOnClick = true;
         }
 
