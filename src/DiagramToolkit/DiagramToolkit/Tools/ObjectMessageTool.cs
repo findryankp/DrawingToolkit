@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DiagramToolkit.Sequences;
+using DiagramToolkit.Shapes;
 
 namespace DiagramToolkit.Tools
 {
@@ -80,6 +81,7 @@ namespace DiagramToolkit.Tools
             }
         }
 
+        private Text text;
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -95,6 +97,14 @@ namespace DiagramToolkit.Tools
                         varCanvas.RemoveDrawingObject(this.objectMessage);
                     }
                 }
+
+                //
+                //drawText
+                text = new Text();
+                text.Value = "ObjectMessageTool";
+                text.X = this.objectMessage.X + (this.objectMessage.Width / 2);
+                text.Y = this.objectMessage.Y - 20;
+                varCanvas.AddDrawingObject(text);
             }
         }
 

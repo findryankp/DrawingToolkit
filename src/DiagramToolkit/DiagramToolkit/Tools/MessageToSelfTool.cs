@@ -90,11 +90,10 @@ namespace DiagramToolkit.Tools
                     messageToSelf.Select();
 
                     text = new Text();
-                    text.Value = "TextAAAAAAAAAAAAA";
-                    int newX = (int)MessageToSelf.xText;
-                    int newY = (int)MessageToSelf.yText;
-                    text.X = newX;
-                    text.Y = newY;
+                    text.Value = "Text";
+                    text.X = messageToSelf.Endpoint.X + 2;
+                    text.Y = messageToSelf.Startpoint.Y+
+                        (messageToSelf.Endpoint.Y - messageToSelf.Startpoint.Y)*2/4;
                     varCanvas.AddDrawingObject(text);
                 }
             }

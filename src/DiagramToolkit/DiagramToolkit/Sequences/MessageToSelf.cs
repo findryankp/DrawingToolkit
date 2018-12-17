@@ -47,7 +47,6 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
-                getTextPosition();
             }
         }
 
@@ -64,7 +63,6 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
-                getTextPosition();
             }
         }
 
@@ -81,7 +79,6 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
-                getTextPosition();
             }
         }
 
@@ -139,15 +136,6 @@ namespace DiagramToolkit.Sequences
 
             eTest = new Point(x1 + 10, y2 + 10);
             this.Graphics.DrawLine(pen, sTest, eTest);
-        }
-
-        public static float xText;
-        public static float yText;
-
-        public void getTextPosition()
-        {
-            xText = Endpoint.X;
-            yText = ((Startpoint.Y- Endpoint.Y)*2 / 4)+ Endpoint.Y;
         }
 
         public override bool Add(DrawingObject obj)

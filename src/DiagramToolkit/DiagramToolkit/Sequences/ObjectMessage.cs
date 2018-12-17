@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiagramToolkit.Shapes;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -51,7 +52,8 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
-                DrawText();
+                getTextPosition();
+                //DrawText();
             }
         }
 
@@ -65,7 +67,8 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
-                DrawText();
+                getTextPosition();
+                //DrawText();
             }
         }
 
@@ -80,7 +83,8 @@ namespace DiagramToolkit.Sequences
                 this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
-                DrawText();
+                getTextPosition();
+                //DrawText();
             }
         }
 
@@ -145,6 +149,14 @@ namespace DiagramToolkit.Sequences
             PointF aaa = new PointF(pos1, pos2);
 
             this.Graphics.DrawString(text, font, brush, aaa);
+        }
+
+        public static float xText;
+        public static float yText;
+        public void getTextPosition()
+        {
+            xText = (((X) * 2 - (Text.Textlenght * 2)) / 8) + Width;
+            yText = Y - 20;
         }
 
         public override bool Add(DrawingObject obj)

@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System;
 
 namespace DiagramToolkit.Shapes
 {
