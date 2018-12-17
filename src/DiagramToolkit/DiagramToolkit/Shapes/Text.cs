@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System;
+using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Shapes
 {
@@ -17,6 +18,9 @@ namespace DiagramToolkit.Shapes
         private SizeF textSize;
 
         public static float Textlenght;
+
+        private const double EPSILON = 3.0;
+        private Pen pen;
 
         public Text()
         {

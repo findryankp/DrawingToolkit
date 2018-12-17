@@ -1,24 +1,36 @@
-﻿using System;
+﻿using System.Drawing;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System;
+using System.Drawing.Drawing2D;
 
-namespace DiagramToolkit.Shapes
+namespace DiagramToolkit.Sequences
 {
     public class Actor : DrawingObject
     {
-        private const double EPSILON = 3.0;
-
+        public string text;
+        public string Value { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public Point Startpoint { get; set; }
         public Point Endpoint { get; set; }
 
-        private Pen pen;
+        private Brush brush;
+        private Font font;
+        private SizeF textSize;
+
+        public static float Textlenght;
 
         public Actor()
         {
-            this.pen = new Pen(Color.Black);
-            pen.Width = 1.5f;
+            this.text = "Edit";
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            font = new Font(
+               fontFamily,
+               16,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
         }
 
         public Actor(Point startpoint) :
@@ -33,62 +45,20 @@ namespace DiagramToolkit.Shapes
             this.Endpoint = endpoint;
         }
 
-        public override void RenderOnStaticView()
+        public override bool Add(DrawingObject obj)
         {
-            pen.Color = Color.Black;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
-
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
-                DrawText();
-                drawSecondLine();
-                drawLifeLine();
-            }
+            return false;
         }
 
-        public override void RenderOnEditingView()
+        public override bool Remove(DrawingObject obj)
         {
-            pen.Color = Color.Blue;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
-
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
-                DrawText();
-                drawSecondLine();
-                drawLifeLine();
-            }
-        }
-
-        public override void RenderOnPreview()
-        {
-            pen.Color = Color.Red;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
-                DrawText();
-                drawSecondLine();
-                drawLifeLine();
-            }
+            return false;
         }
 
         public override bool Intersect(int xTest, int yTest)
         {
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-
-            if ((xTest >= (x1-10) && xTest <= (x1+10)) && (yTest >= y1 && yTest <= (y2 +10)))
+            if ((xTest >= (Startpoint.X - 10) && xTest <= (Startpoint.X + 10)) 
+                && (yTest >= Startpoint.Y - 5 && yTest <= (Endpoint.Y + 10)))
             {
                 Debug.WriteLine("Object " + ID + " is selected.");
                 return true;
@@ -96,10 +66,59 @@ namespace DiagramToolkit.Shapes
             return false;
         }
 
-        public double GetSlope()
+        public float pos1;
+        public float pos2;
+
+        public override void RenderOnEditingView()
         {
-            double m = (double)(Endpoint.Y - Startpoint.Y) / (double)(Endpoint.X - Startpoint.X);
-            return m;
+            this.brush = new SolidBrush(Color.Blue);
+            this.pen = new Pen(Color.Blue);
+            float pos1 = Startpoint.X - (textSize.Width / 2);
+            float pos2 = Endpoint.Y + 10;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            DrawActor();
+        }
+
+        public override void RenderOnPreview()
+        {
+            this.brush = new SolidBrush(Color.Red);
+            this.pen = new Pen(Color.Red);
+            float pos1 = Startpoint.X - (textSize.Width / 2);
+            float pos2 = Endpoint.Y + 10;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            DrawActor();
+        }
+
+        public override void RenderOnStaticView()
+        {
+            this.brush = new SolidBrush(Color.Black);
+            this.pen = new Pen(Color.Black);
+            float pos1 = Startpoint.X - (textSize.Width / 2);
+            float pos2 = Endpoint.Y + 10;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            DrawActor();
+        }
+
+        public override string GetText()
+        {
+            return this.text;
+        }
+
+        public override void SetText(string s)
+        {
+            this.text = s;
         }
 
         public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
@@ -108,13 +127,22 @@ namespace DiagramToolkit.Shapes
             this.Endpoint = new Point(this.Endpoint.X + xAmount, this.Endpoint.Y + yAmount);
         }
 
+        public override Point GetCenterPoint()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private Pen pen;
         public int x1;
         public int y1;
         public int x2;
         public int y2;
 
-        public void drawSecondLine()
+        public void DrawActor()
         {
+            pen.Width = 1.5f;
+            pen.DashStyle = DashStyle.Solid;
+
             x1 = Startpoint.X;
             y1 = Startpoint.Y;
             x2 = Endpoint.X;
@@ -152,71 +180,12 @@ namespace DiagramToolkit.Shapes
 
             //kepala
             GetGraphics().DrawEllipse(pen, x1 - 10, y1 - 25, 20, 20);
-        }
 
-        public void drawLifeLine()
-        {
-            pen.Color = Color.Black;
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-
-            x1 = Startpoint.X;
-            y1 = Startpoint.Y;
-            x2 = Endpoint.X;
-            y2 = Endpoint.Y;
-
-            Point sTest = new Point(x1, y2 + 27);
-            Point eTest = new Point(x1, 500);
+            //lifeline
+            pen.DashStyle = DashStyle.Dash;
+            sTest = new Point(x1, y2 + 27);
+            eTest = new Point(x1, 500);
             GetGraphics().DrawLine(pen, sTest, eTest);
-        }
-
-        private SizeF textSize;
-        private Brush brush;
-        private Font font;
-        public void DrawText()
-        {
-            this.brush = new SolidBrush(Color.Black);
-
-            FontFamily fontFamily = new FontFamily("Arial");
-            font = new Font(
-               fontFamily,
-               12,
-               FontStyle.Regular,
-               GraphicsUnit.Pixel);
-
-            string text = "Actor";
-            textSize = GetGraphics().MeasureString(text, font);
-
-            float pos1 = Startpoint.X-(textSize.Width / 2);
-            float pos2 = Endpoint.Y + 10;
-            PointF aaa = new PointF(pos1, pos2);
-
-            GetGraphics().DrawString(text, font, brush, aaa);
-        }
-
-        public override bool Add(DrawingObject obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Remove(DrawingObject obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetText()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SetText(string s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Point GetCenterPoint()
-        {
-            throw new NotImplementedException();
         }
     }
 }

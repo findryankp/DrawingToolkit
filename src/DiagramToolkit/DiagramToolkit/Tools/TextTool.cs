@@ -30,6 +30,8 @@ namespace DiagramToolkit.Tools
             }
         }
 
+        private string passingText;
+
         public TextTool()
         {
             this.Name = "Text tool";

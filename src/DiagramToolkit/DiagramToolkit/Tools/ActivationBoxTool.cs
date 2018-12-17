@@ -5,10 +5,10 @@ using DiagramToolkit.Sequences;
 
 namespace DiagramToolkit.Tools
 {
-    class ActivationBoxTool : ToolStripButton, ITool
+    public class ActivationBoxTool : ToolStripButton, ITool
     {
-        private ICanvas varCanvas;
         private ActivationBox activationBox;
+        private ICanvas canvas;
 
         public Cursor Cursor
         {
@@ -22,50 +22,54 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return this.varCanvas;
+                return this.canvas;
             }
 
             set
             {
-                this.varCanvas = value;
+                this.canvas = value;
             }
         }
 
         public ActivationBoxTool()
         {
-            this.Name = "Activation Box tool";
-            this.ToolTipText = "Activation Box tool";
+            this.Name = "ActivationBox tool";
+            this.ToolTipText = "ActivationBox tool";
             this.Image = IconSet.activation_box;
             this.CheckOnClick = true;
+        }
+
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                activationBox = new ActivationBox(e.X, e.Y);
-                this.varCanvas.AddDrawingObject(this.activationBox);
-            }
-        }
+                activationBox = new ActivationBox();
+                activationBox.Value = "Text";
+                activationBox.X = e.X;
+                activationBox.Y = e.Y;
 
-        public void ToolMouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (activationBox != null)
+                DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+
+                if (obj == null)
                 {
-                    if (e.Button == MouseButtons.Left)
+                    canvas.AddDrawingObject(activationBox);
+                }
+                else
+                {
+                    bool allowed = obj.Add(activationBox);
+
+                    if (!allowed)
                     {
-                        this.activationBox.Select();
-                    }
-                    else if (e.Button == MouseButtons.Right)
-                    {
-                        varCanvas.RemoveDrawingObject(this.activationBox);
+                        canvas.AddDrawingObject(activationBox);
                     }
                 }
             }
         }
-
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -84,24 +88,24 @@ namespace DiagramToolkit.Tools
             }
         }
 
+        public void ToolMouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         public void ToolHotKeysDown(object sender, Keys e)
         {
-            throw new NotImplementedException();
-        }
 
-        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

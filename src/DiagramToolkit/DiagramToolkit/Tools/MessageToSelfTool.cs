@@ -1,19 +1,14 @@
 ﻿using DiagramToolkit.Shapes;
-using DiagramToolkit.States;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DiagramToolkit.Sequences;
 using System.Windows.Forms;
+using DiagramToolkit.Sequences;
 
 namespace DiagramToolkit.Tools
 {
     public class MessageToSelfTool : ToolStripButton, ITool
     {
-        private ICanvas varCanvas;
         private MessageToSelf messageToSelf;
-        private Text text;
+        private ICanvas canvas;
 
         public Cursor Cursor
         {
@@ -27,48 +22,57 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return this.varCanvas;
+                return this.canvas;
             }
 
             set
             {
-                this.varCanvas = value;
+                this.canvas = value;
             }
         }
 
         public MessageToSelfTool()
         {
-            this.Name = "Message To Self tool";
-            this.ToolTipText = "Message To Self tool";
+            this.Name = "MessageToSelf tool";
+            this.ToolTipText = "MessageToSelf tool";
             this.Image = IconSet.messageTo_self;
             this.CheckOnClick = true;
         }
 
-        public void ToolHotKeysDown(object sender, Keys e)
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
-        }
 
-        public void ToolKeyDown(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ToolKeyUp(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
+                messageToSelf = new MessageToSelf();
+                messageToSelf.Value = "Text";
+                messageToSelf.X = e.X;
+                messageToSelf.Y = e.Y;
+
+                DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+
                 messageToSelf = new MessageToSelf(new System.Drawing.Point(e.X, e.Y));
                 messageToSelf.Endpoint = new System.Drawing.Point(e.X, e.Y);
-                varCanvas.AddDrawingObject(messageToSelf);
+
+                if (obj == null)
+                {
+                    canvas.AddDrawingObject(messageToSelf);
+                }
+                else
+                {
+                    bool allowed = obj.Add(messageToSelf);
+
+                    if (!allowed)
+                    {
+                        canvas.AddDrawingObject(messageToSelf);
+                    }
+                }
             }
         }
-
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -88,21 +92,23 @@ namespace DiagramToolkit.Tools
                 {
                     messageToSelf.Endpoint = new System.Drawing.Point(e.X, e.Y);
                     messageToSelf.Select();
-
-                    text = new Text();
-                    text.Value = "Text";
-                    text.X = messageToSelf.Endpoint.X + 2;
-                    text.Y = messageToSelf.Startpoint.Y+
-                        (messageToSelf.Endpoint.Y - messageToSelf.Startpoint.Y)*2/4;
-                    varCanvas.AddDrawingObject(text);
                 }
             }
         }
 
-        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolHotKeysDown(object sender, Keys e)
         {
 
         }
     }
 }
-

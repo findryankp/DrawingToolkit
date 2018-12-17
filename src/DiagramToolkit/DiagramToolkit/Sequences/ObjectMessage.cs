@@ -1,91 +1,46 @@
-﻿using DiagramToolkit.Shapes;
-using System;
+﻿using System.Drawing;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System;
+using System.Drawing.Drawing2D;
 
 namespace DiagramToolkit.Sequences
 {
     public class ObjectMessage : DrawingObject
     {
+        public string text;
+        public string Value { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
 
-        private Pen pen;
-
+        private Brush brush;
+        private Font font;
         private SizeF textSize;
 
-        public int xTest;
-        public int yTest;
-        public int wTest;
-        public int hTest;
+        public static float Textlenght;
 
         public ObjectMessage()
         {
-            this.pen = new Pen(Color.Black);
-            pen.Width = 1.5f;
+            this.text = "Edit";
+
+            FontFamily fontFamily = new FontFamily("Arial");
+            font = new Font(
+               fontFamily,
+               16,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
         }
 
-        public ObjectMessage(int x, int y) : this()
+        public override bool Add(DrawingObject obj)
         {
-            this.X = x;
-            this.Y = y;
+            return false;
         }
 
-        public ObjectMessage(int x, int y, int width, int height) : this(x, y)
+        public override bool Remove(DrawingObject obj)
         {
-            this.Width = width;
-            this.Height = height;
-        }
-
-        public override void RenderOnPreview()
-        {
-            this.pen = new Pen(Color.Red);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
-                drawArrow();
-                getTextPosition();
-                //DrawText();
-            }
-        }
-
-        public override void RenderOnEditingView()
-        {
-            this.pen = new Pen(Color.Blue);
-            pen.Width = 1.5f;
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
-                drawArrow();
-                getTextPosition();
-                //DrawText();
-            }
-        }
-
-        public override void RenderOnStaticView()
-        {
-            this.pen = new Pen(Color.Black);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
-            if (GetGraphics() != null)
-            {
-                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
-                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
-                drawBox();
-                drawArrow();
-                getTextPosition();
-                //DrawText();
-            }
+            return false;
         }
 
         public override bool Intersect(int xTest, int yTest)
@@ -98,25 +53,87 @@ namespace DiagramToolkit.Sequences
             return false;
         }
 
+        public float pos1;
+        public float pos2;
+
+        public override void RenderOnEditingView()
+        {
+            this.pen = new Pen(Color.Blue);
+            this.brush = new SolidBrush(Color.Blue);
+            pos1 = ((Width - textSize.Width) / 2) + this.X;
+            pos2 = Y - 20;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            drawRectangle();
+        }
+
+        public override void RenderOnPreview()
+        {
+            this.pen = new Pen(Color.Red);
+            this.brush = new SolidBrush(Color.Red);
+            pos1 = ((Width - textSize.Width) / 2) + this.X;
+            pos2 = Y - 20;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            drawRectangle();
+        }
+
+        public override void RenderOnStaticView()
+        {
+            this.pen = new Pen(Color.Black);
+            this.brush = new SolidBrush(Color.Black);
+            pos1 = ((Width - textSize.Width) / 2) + this.X;
+            pos2 = Y - 20;
+            PointF aaa = new PointF(pos1, pos2);
+            GetGraphics().DrawString(this.text, font, brush, aaa);
+
+            textSize = GetGraphics().MeasureString(this.text, font);
+            Textlenght = textSize.Width;
+            drawRectangle();
+        }
+
+        public override string GetText()
+        {
+            return this.text;
+        }
+
+        public override void SetText(string s)
+        {
+            this.text = s;
+        }
+
         public override void Translate(MouseEventArgs e, int xAmount, int yAmount)
         {
             this.X += xAmount;
             this.Y += yAmount;
         }
 
-        public void drawBox()
+        public override Point GetCenterPoint()
         {
-            xTest = Width + X;
-            GetGraphics().DrawRectangle(pen, xTest, Y, 10, 30);
+            throw new System.NotImplementedException();
         }
 
+        private Pen pen;
         public int x1;
         public int y1;
         public int x2;
         public int y2;
 
-        public void drawArrow()
+        public void drawRectangle()
         {
+            pen.Width = 1.0f;
+            this.pen.DashStyle = DashStyle.Solid;
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, 1);
+
+            x1 = Width + X;
+            GetGraphics().DrawRectangle(pen, x1, Y, 10, 30);
+
             x1 = X + Width;
             y1 = Y;
             Point sTest = new Point(x1, y1);
@@ -124,64 +141,7 @@ namespace DiagramToolkit.Sequences
             GetGraphics().DrawLine(pen, sTest, eTest);
 
             eTest = new Point(x1 - 10, y1 + 10);
-            GetGraphics().DrawLine(pen, sTest, eTest); 
-        }
-
-        private Brush brush;
-        private Font font;
-
-        public void DrawText()
-        {
-            this.brush = new SolidBrush(Color.Black);
-
-            FontFamily fontFamily = new FontFamily("Arial");
-            font = new Font(
-               fontFamily,
-               12,
-               FontStyle.Regular,
-               GraphicsUnit.Pixel);
-
-            string text = "Value";
-            textSize = GetGraphics().MeasureString(text, font);
-
-            float pos1 = ((Width - textSize.Width) / 2) + X;
-            float pos2 = Y - 20;
-            PointF aaa = new PointF(pos1, pos2);
-
-            GetGraphics().DrawString(text, font, brush, aaa);
-        }
-
-        public static float xText;
-        public static float yText;
-        public void getTextPosition()
-        {
-            xText = (((X) * 2 - (Text.Textlenght * 2)) / 8) + Width;
-            yText = Y - 20;
-        }
-
-        public override bool Add(DrawingObject obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Remove(DrawingObject obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetText()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SetText(string s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Point GetCenterPoint()
-        {
-            throw new NotImplementedException();
+            GetGraphics().DrawLine(pen, sTest, eTest);
         }
     }
 }

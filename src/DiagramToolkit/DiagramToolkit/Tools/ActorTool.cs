@@ -1,18 +1,14 @@
 ﻿using DiagramToolkit.Shapes;
-using DiagramToolkit.States;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DiagramToolkit.Sequences;
 using System.Windows.Forms;
+using DiagramToolkit.Sequences;
 
 namespace DiagramToolkit.Tools
 {
     public class ActorTool : ToolStripButton, ITool
     {
-        private ICanvas varCanvas;
         private Actor actor;
+        private ICanvas canvas;
 
         public Cursor Cursor
         {
@@ -26,12 +22,12 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return this.varCanvas;
+                return this.canvas;
             }
 
             set
             {
-                this.varCanvas = value;
+                this.canvas = value;
             }
         }
 
@@ -43,31 +39,40 @@ namespace DiagramToolkit.Tools
             this.CheckOnClick = true;
         }
 
-        public void ToolHotKeysDown(object sender, Keys e)
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
-        }
 
-        public void ToolKeyDown(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ToolKeyUp(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
+                actor = new Actor();
+                actor.Value = "Text";
+                actor.X = e.X;
+                actor.Y = e.Y;
+
+                DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+
                 actor = new Actor(new System.Drawing.Point(e.X, e.Y));
                 actor.Endpoint = new System.Drawing.Point(e.X, e.Y);
-                varCanvas.AddDrawingObject(actor);
+
+                if (obj == null)
+                {
+                    canvas.AddDrawingObject(actor);
+                }
+                else
+                {
+                    bool allowed = obj.Add(actor);
+
+                    if (!allowed)
+                    {
+                        canvas.AddDrawingObject(actor);
+                    }
+                }
             }
         }
-
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -91,9 +96,19 @@ namespace DiagramToolkit.Tools
             }
         }
 
-        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolHotKeysDown(object sender, Keys e)
+        {
+
         }
     }
 }

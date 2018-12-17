@@ -94,14 +94,6 @@ namespace DiagramToolkit.Tools
                 {
                     returnMessage.Endpoint = new System.Drawing.Point(e.X, e.Y);
                     returnMessage.Select();
-
-                    //drawText
-                    text = new Text();
-                    text.Value = "Text";
-                    text.X = returnMessage.Endpoint.X + 
-                        ((returnMessage.Startpoint.X - returnMessage.Endpoint.X)*2/4);
-                    text.Y = returnMessage.Startpoint.Y-20;
-                    varCanvas.AddDrawingObject(text);
                 }
             }
         }

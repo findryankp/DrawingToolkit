@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DiagramToolkit.Shapes;
+using System;
 using System.Windows.Forms;
 using DiagramToolkit.Sequences;
-using DiagramToolkit.Shapes;
 
 namespace DiagramToolkit.Tools
 {
-    class ObjectMessageTool : ToolStripButton, ITool
+    public class ObjectMessageTool : ToolStripButton, ITool
     {
-        private ICanvas varCanvas;
         private ObjectMessage objectMessage;
+        private ICanvas canvas;
 
         public Cursor Cursor
         {
@@ -22,12 +22,12 @@ namespace DiagramToolkit.Tools
         {
             get
             {
-                return this.varCanvas;
+                return this.canvas;
             }
 
             set
             {
-                this.varCanvas = value;
+                this.canvas = value;
             }
         }
 
@@ -39,30 +39,37 @@ namespace DiagramToolkit.Tools
             this.CheckOnClick = true;
         }
 
-        public void ToolHotKeysDown(object sender, Keys e)
+        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
-        }
 
-        public void ToolKeyDown(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ToolKeyUp(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                objectMessage = new ObjectMessage(e.X, e.Y);
-                this.varCanvas.AddDrawingObject(this.objectMessage);
+                objectMessage = new ObjectMessage();
+                objectMessage.Value = "Text";
+                objectMessage.X = e.X;
+                objectMessage.Y = e.Y;
+
+                DrawingObject obj = canvas.SelectObjectAt(e.X, e.Y);
+
+                if (obj == null)
+                {
+                    canvas.AddDrawingObject(objectMessage);
+                }
+                else
+                {
+                    bool allowed = obj.Add(objectMessage);
+
+                    if (!allowed)
+                    {
+                        canvas.AddDrawingObject(objectMessage);
+                    }
+                }
             }
         }
-
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -81,36 +88,24 @@ namespace DiagramToolkit.Tools
             }
         }
 
-        private Text text;
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (objectMessage != null)
-                {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        this.objectMessage.Select();
-                    }
-                    else if (e.Button == MouseButtons.Right)
-                    {
-                        varCanvas.RemoveDrawingObject(this.objectMessage);
-                    }
-                }
 
-                //
-                //drawText
-                text = new Text();
-                text.Value = "ObjectMessageTool";
-                text.X = this.objectMessage.X + (this.objectMessage.Width / 2);
-                text.Y = this.objectMessage.Y - 20;
-                varCanvas.AddDrawingObject(text);
-            }
         }
 
-        public void ToolMouseDoubleClick(object sender, MouseEventArgs e)
+        public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            throw new NotImplementedException();
+
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolHotKeysDown(object sender, Keys e)
+        {
+
         }
     }
 }
