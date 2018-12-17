@@ -11,7 +11,6 @@ namespace DiagramToolkit
     public abstract class DrawingObject : IObservable
     {
         public Guid ID { get; set; }
-        public Graphics Graphics { get; set; }
 
         public abstract string GetText();
         public abstract void SetText(string s);
@@ -27,6 +26,7 @@ namespace DiagramToolkit
         }
 
         protected DrawingState state;
+        private Graphics graphics;
 
         public DrawingObject()
         {
@@ -53,6 +53,16 @@ namespace DiagramToolkit
         {
             this.state.Draw(this);
             Notify();
+        }
+
+        public virtual void SetGraphics(Graphics graphics)
+        {
+            this.graphics = graphics;
+        }
+
+        public virtual Graphics GetGraphics()
+        {
+            return this.graphics;
         }
 
         public virtual void Select()

@@ -40,11 +40,11 @@ namespace DiagramToolkit.Sequences
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
                 Point eTest = new Point(Endpoint.X, Startpoint.Y);
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
             }
@@ -56,11 +56,11 @@ namespace DiagramToolkit.Sequences
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
                 Point eTest = new Point(Endpoint.X, Startpoint.Y);
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
             }
@@ -72,11 +72,11 @@ namespace DiagramToolkit.Sequences
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
                 Point eTest = new Point(Endpoint.X, Startpoint.Y);
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, eTest);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, eTest);
                 drawSecondLine();
                 arrow();
             }
@@ -117,11 +117,11 @@ namespace DiagramToolkit.Sequences
             y2 = Endpoint.Y;
             Point sTest = new Point(x2, y1);
             Point eTest = new Point(x2, y2);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             sTest = new Point(x2, y2);
             eTest = new Point(x1, y2);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
         }
 
         public void arrow()
@@ -132,10 +132,10 @@ namespace DiagramToolkit.Sequences
             y2 = Endpoint.Y;
             Point sTest = new Point(x1, y2);
             Point eTest = new Point(x1 + 10, y2 - 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             eTest = new Point(x1 + 10, y2 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
         }
 
         public override bool Add(DrawingObject obj)

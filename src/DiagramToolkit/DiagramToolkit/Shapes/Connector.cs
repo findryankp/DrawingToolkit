@@ -33,21 +33,21 @@ namespace DiagramToolkit.Shapes
         {
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.Solid;
-            this.Graphics.DrawLine(pen, this.startPoint, this.finishPoint);
+            this.GetGraphics().DrawLine(pen, this.startPoint, this.finishPoint);
         }
 
         public override void RenderOnPreview()
         {
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.DashDotDot;
-            this.Graphics.DrawLine(pen, this.startPoint, this.finishPoint);
+            this.GetGraphics().DrawLine(pen, this.startPoint, this.finishPoint);
         }
 
         public override void RenderOnStaticView()
         {
             pen.Color = Color.Black;
             pen.DashStyle = DashStyle.Solid;
-            this.Graphics.DrawLine(pen, this.startPoint, this.finishPoint);
+            this.GetGraphics().DrawLine(pen, this.startPoint, this.finishPoint);
         }
 
         public override void Translate(MouseEventArgs e, int xAmount, int yAmount)

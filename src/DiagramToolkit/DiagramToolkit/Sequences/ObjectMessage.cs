@@ -46,10 +46,10 @@ namespace DiagramToolkit.Sequences
             this.pen = new Pen(Color.Red);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
                 getTextPosition();
@@ -61,10 +61,10 @@ namespace DiagramToolkit.Sequences
         {
             this.pen = new Pen(Color.Blue);
             pen.Width = 1.5f;
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
                 getTextPosition();
@@ -77,10 +77,10 @@ namespace DiagramToolkit.Sequences
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawRectangle(pen, X, Y, Width, 1);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawRectangle(pen, X, Y, Width, 1);
                 drawBox();
                 drawArrow();
                 getTextPosition();
@@ -107,7 +107,7 @@ namespace DiagramToolkit.Sequences
         public void drawBox()
         {
             xTest = Width + X;
-            this.Graphics.DrawRectangle(pen, xTest, Y, 10, 30);
+            GetGraphics().DrawRectangle(pen, xTest, Y, 10, 30);
         }
 
         public int x1;
@@ -121,10 +121,10 @@ namespace DiagramToolkit.Sequences
             y1 = Y;
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x1 - 10, y1 - 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             eTest = new Point(x1 - 10, y1 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest); 
+            GetGraphics().DrawLine(pen, sTest, eTest); 
         }
 
         private Brush brush;
@@ -142,13 +142,13 @@ namespace DiagramToolkit.Sequences
                GraphicsUnit.Pixel);
 
             string text = "Value";
-            textSize = this.Graphics.MeasureString(text, font);
+            textSize = GetGraphics().MeasureString(text, font);
 
             float pos1 = ((Width - textSize.Width) / 2) + X;
             float pos2 = Y - 20;
             PointF aaa = new PointF(pos1, pos2);
 
-            this.Graphics.DrawString(text, font, brush, aaa);
+            GetGraphics().DrawString(text, font, brush, aaa);
         }
 
         public static float xText;

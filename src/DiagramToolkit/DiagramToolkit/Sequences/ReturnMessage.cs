@@ -42,10 +42,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //this.GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
             }
         }
@@ -56,10 +56,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //this.GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
             }
         }
@@ -70,10 +70,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //this.GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 drawArrow();
             }
         }
@@ -118,14 +118,14 @@ namespace DiagramToolkit.Shapes
 
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x2, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            this.GetGraphics().DrawLine(pen, sTest, eTest);
 
             sTest = new Point(x2, y1);
             eTest = new Point(x2 + 10, y1 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            this.GetGraphics().DrawLine(pen, sTest, eTest);
 
             eTest = new Point(x2 + 10, y1 - 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            this.GetGraphics().DrawLine(pen, sTest, eTest);
         }
 
         public override bool Add(DrawingObject obj)

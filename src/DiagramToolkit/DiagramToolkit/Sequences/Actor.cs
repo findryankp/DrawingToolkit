@@ -39,10 +39,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 DrawText();
                 drawSecondLine();
                 drawLifeLine();
@@ -55,10 +55,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 DrawText();
                 drawSecondLine();
                 drawLifeLine();
@@ -71,10 +71,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                //this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                //GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
                 DrawText();
                 drawSecondLine();
                 drawLifeLine();
@@ -123,35 +123,35 @@ namespace DiagramToolkit.Shapes
             //garis pusat
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x1, y2);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //kaki kiri
             sTest = new Point(x1, y2);
             eTest = new Point(x1 - 10, y2 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //kaki kanan
             sTest = new Point(x1, y2);
             eTest = new Point(x1 + 10, y2 + 10);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //tangan kiri
             sTest = new Point(x1, y1);
             eTest = new Point(x1 - 10, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //tangan kanan
             sTest = new Point(x1, y1);
             eTest = new Point(x1 + 10, y1);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //leher
             sTest = new Point(x1, y1);
             eTest = new Point(x1, y1 - 5);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
 
             //kepala
-            this.Graphics.DrawEllipse(pen, x1 - 10, y1 - 25, 20, 20);
+            GetGraphics().DrawEllipse(pen, x1 - 10, y1 - 25, 20, 20);
         }
 
         public void drawLifeLine()
@@ -167,7 +167,7 @@ namespace DiagramToolkit.Shapes
 
             Point sTest = new Point(x1, y2 + 27);
             Point eTest = new Point(x1, 500);
-            this.Graphics.DrawLine(pen, sTest, eTest);
+            GetGraphics().DrawLine(pen, sTest, eTest);
         }
 
         private SizeF textSize;
@@ -185,13 +185,13 @@ namespace DiagramToolkit.Shapes
                GraphicsUnit.Pixel);
 
             string text = "Actor";
-            textSize = this.Graphics.MeasureString(text, font);
+            textSize = GetGraphics().MeasureString(text, font);
 
             float pos1 = Startpoint.X-(textSize.Width / 2);
             float pos2 = Endpoint.Y + 10;
             PointF aaa = new PointF(pos1, pos2);
 
-            this.Graphics.DrawString(text, font, brush, aaa);
+            GetGraphics().DrawString(text, font, brush, aaa);
         }
 
         public override bool Add(DrawingObject obj)

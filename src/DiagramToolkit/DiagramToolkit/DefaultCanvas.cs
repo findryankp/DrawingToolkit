@@ -98,7 +98,7 @@ namespace DiagramToolkit
         {
             foreach (DrawingObject obj in drawingObjects.Reverse<DrawingObject>())
             {
-                obj.Graphics = e.Graphics;
+                obj.SetGraphics(e.Graphics);
                 obj.Draw();
             }
         }
@@ -116,6 +116,29 @@ namespace DiagramToolkit
             {
                 this.activeTool.ToolKeyUp(sender, e);
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            const int WM_KEYDOWN = 0x100;
+            const int WM_SYSKEYDOWN = 0x104;
+
+            if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
+            {
+                switch (keyData)
+                {
+                    case Keys.Control | Keys.G:
+                        Console.WriteLine("<CTRL> + G Captured");
+                        if (this.activeTool != null)
+                        {
+                            this.activeTool.ToolHotKeysDown(this, Keys.Control | Keys.G);
+                            this.Repaint();
+                        }
+                        break;
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         public void Repaint()

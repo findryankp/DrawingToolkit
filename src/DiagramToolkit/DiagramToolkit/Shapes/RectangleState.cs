@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace DiagramToolkit.Shapes
 {
@@ -14,11 +15,13 @@ namespace DiagramToolkit.Shapes
         public int Height { get; set; }
 
         private Pen pen;
+        private List<DrawingObject> drawingObjects;
 
         public RectangleState()
         {
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
+            drawingObjects = new List<DrawingObject>();
         }
 
         public RectangleState(int x, int y) : this()
@@ -35,33 +38,40 @@ namespace DiagramToolkit.Shapes
 
         public override void RenderOnPreview()
         {
-            this.pen = new Pen(Color.Red);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.DashDotDot;
-            if (this.Graphics != null)
+            this.pen.Color = Color.Red;
+            this.pen.DashStyle = DashStyle.DashDot;
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
             {
-                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnPreview();
             }
         }
 
         public override void RenderOnEditingView()
         {
-            this.pen = new Pen(Color.Blue);
-            pen.Width = 1.5f;
-            if (this.Graphics != null)
+            this.pen.Color = Color.Blue;
+            this.pen.DashStyle = DashStyle.Solid;
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
             {
-                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnEditingView();
             }
         }
 
         public override void RenderOnStaticView()
         {
-            this.pen = new Pen(Color.Black);
-            pen.Width = 1.5f;
-            pen.DashStyle = DashStyle.Solid;
-            if (this.Graphics != null)
+            this.pen.Color = Color.Black;
+            this.pen.DashStyle = DashStyle.Solid;
+            GetGraphics().DrawRectangle(this.pen, X, Y, Width, Height);
+
+            foreach (DrawingObject obj in drawingObjects)
             {
-                this.Graphics.DrawRectangle(pen, X, Y, Width, Height);
+                obj.SetGraphics(GetGraphics());
+                obj.RenderOnStaticView();
             }
         }
 
@@ -80,16 +90,24 @@ namespace DiagramToolkit.Shapes
             Point point = e.Location;
             this.X += xAmount;
             this.Y += yAmount;
+            foreach (DrawingObject obj in drawingObjects)
+            {
+                obj.Translate(e, xAmount, yAmount);
+            }
         }
 
         public override bool Add(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            drawingObjects.Add(obj);
+
+            return true;
         }
 
         public override bool Remove(DrawingObject obj)
         {
-            throw new NotImplementedException();
+            drawingObjects.Remove(obj);
+
+            return true;
         }
 
         public override string GetText()

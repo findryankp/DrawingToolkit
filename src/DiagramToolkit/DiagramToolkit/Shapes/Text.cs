@@ -53,22 +53,22 @@ namespace DiagramToolkit.Shapes
 
         public override void RenderOnEditingView()
         {
-            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(this.text, font);
+            GetGraphics().DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = GetGraphics().MeasureString(this.text, font);
             Textlenght = textSize.Width;
         }
 
         public override void RenderOnPreview()
         {
-            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(this.text, font);
+            GetGraphics().DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = GetGraphics().MeasureString(this.text, font);
             Textlenght = textSize.Width;
         }
 
         public override void RenderOnStaticView()
         {
-            this.Graphics.DrawString(this.text, font, brush, new PointF(X, Y));
-            textSize = this.Graphics.MeasureString(this.text, font);
+            GetGraphics().DrawString(this.text, font, brush, new PointF(X, Y));
+            textSize = GetGraphics().MeasureString(this.text, font);
             Textlenght = textSize.Width;
         }
 

@@ -40,10 +40,10 @@ namespace DiagramToolkit.Shapes
             this.pen = new Pen(Color.Red);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                this.GetGraphics().DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
             }
         }
 
@@ -53,10 +53,10 @@ namespace DiagramToolkit.Shapes
             this.pen = new Pen(Color.Blue);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                this.GetGraphics().DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
             }
         }
 
@@ -65,10 +65,10 @@ namespace DiagramToolkit.Shapes
             this.pen = new Pen(Color.Black);
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
-            if (this.Graphics != null)
+            if (this.GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+                this.GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                this.GetGraphics().DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
             }
         }
 

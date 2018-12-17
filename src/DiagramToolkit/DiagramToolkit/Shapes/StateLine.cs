@@ -39,10 +39,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
             }
         }
 
@@ -52,10 +52,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.Solid;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
             }
         }
 
@@ -65,10 +65,10 @@ namespace DiagramToolkit.Shapes
             pen.Width = 1.5f;
             pen.DashStyle = DashStyle.DashDotDot;
 
-            if (this.Graphics != null)
+            if (GetGraphics() != null)
             {
-                this.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                this.Graphics.DrawLine(pen, this.Startpoint, this.Endpoint);
+                GetGraphics().SmoothingMode = SmoothingMode.AntiAlias;
+                GetGraphics().DrawLine(pen, this.Startpoint, this.Endpoint);
             }
         }
 
