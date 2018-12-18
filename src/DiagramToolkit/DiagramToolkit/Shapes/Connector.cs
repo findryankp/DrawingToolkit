@@ -95,5 +95,10 @@ namespace DiagramToolkit.Shapes
         {
             throw new NotImplementedException();
         }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

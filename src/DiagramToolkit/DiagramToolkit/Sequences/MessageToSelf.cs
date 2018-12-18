@@ -23,7 +23,7 @@ namespace DiagramToolkit.Sequences
 
         public MessageToSelf()
         {
-            this.text = "Edit";
+            this.text = "MessageToSelf";
 
             FontFamily fontFamily = new FontFamily("Arial");
             font = new Font(
@@ -143,7 +143,6 @@ namespace DiagramToolkit.Sequences
         public void DrawLine()
         {
             pen.Width = 1.5f;
-            pen.Color = Color.Black;
             pen.DashStyle = DashStyle.Solid;
 
             x1 = Startpoint.X;
@@ -170,6 +169,12 @@ namespace DiagramToolkit.Sequences
 
             eTest = new Point(x1 + 10, y2 + 10);
             GetGraphics().DrawLine(pen, sTest, eTest);
+        }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            Endpoint= e.Location;
         }
     }
 }

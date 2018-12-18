@@ -23,7 +23,7 @@ namespace DiagramToolkit.Sequences
 
         public ActivationBox()
         {
-            this.text = "Edit";
+            this.text = "ActivationBox";
 
             FontFamily fontFamily = new FontFamily("Arial");
             font = new Font(
@@ -139,6 +139,13 @@ namespace DiagramToolkit.Sequences
             Point sTest = new Point(x1, y1);
             Point eTest = new Point(x1, 500);
             GetGraphics().DrawLine(pen, sTest, eTest);
+        }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            Width = (e.X - X) * 2 / 2;
+            Height = (e.Y - Y) * 2 / 2;
         }
     }
 }

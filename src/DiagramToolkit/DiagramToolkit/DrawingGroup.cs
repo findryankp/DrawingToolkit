@@ -121,5 +121,10 @@ namespace DiagramToolkit
         {
             throw new NotImplementedException();
         }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

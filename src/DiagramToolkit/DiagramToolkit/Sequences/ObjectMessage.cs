@@ -23,7 +23,7 @@ namespace DiagramToolkit.Sequences
 
         public ObjectMessage()
         {
-            this.text = "Edit";
+            this.text = "ObjectMessage";
 
             FontFamily fontFamily = new FontFamily("Arial");
             font = new Font(
@@ -132,7 +132,12 @@ namespace DiagramToolkit.Sequences
             GetGraphics().DrawRectangle(this.pen, X, Y, Width, 1);
 
             x1 = Width + X;
-            GetGraphics().DrawRectangle(pen, x1, Y, 10, 30);
+
+            if (Height <= 30)
+            {
+                Height = 30;
+            }
+            GetGraphics().DrawRectangle(pen, x1, Y, 10, Height);
 
             x1 = X + Width;
             y1 = Y;
@@ -142,6 +147,13 @@ namespace DiagramToolkit.Sequences
 
             eTest = new Point(x1 - 10, y1 + 10);
             GetGraphics().DrawLine(pen, sTest, eTest);
+        }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            Width = (e.X - X) * 2 / 2;
+            Height = (e.Y - Y) * 2 / 2;
         }
     }
 }

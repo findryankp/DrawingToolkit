@@ -23,7 +23,7 @@ namespace DiagramToolkit.Sequences
 
         public Actor()
         {
-            this.text = "Edit";
+            this.text = "Actor";
 
             FontFamily fontFamily = new FontFamily("Arial");
             font = new Font(
@@ -186,6 +186,12 @@ namespace DiagramToolkit.Sequences
             sTest = new Point(x1, y2 + 27);
             eTest = new Point(x1, 500);
             GetGraphics().DrawLine(pen, sTest, eTest);
+        }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            Endpoint = e.Location;
         }
     }
 }

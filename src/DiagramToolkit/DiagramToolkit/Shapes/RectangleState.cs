@@ -75,6 +75,13 @@ namespace DiagramToolkit.Shapes
             }
         }
 
+        public override void Rezise(MouseEventArgs e, int xa, int ya)
+        {
+            Point point = e.Location;
+            Width = (e.X - X) * 2 / 2;
+            Height = (e.Y - Y) * 2 / 2;
+        }
+
         public override bool Intersect(int xTest, int yTest)
         {
             if ((xTest >= X && xTest <= X + Width) && (yTest >= Y && yTest <= Y + Height))

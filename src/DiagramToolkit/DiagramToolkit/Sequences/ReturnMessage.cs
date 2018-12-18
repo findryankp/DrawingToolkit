@@ -171,5 +171,11 @@ namespace DiagramToolkit.Sequences
             eTest = new Point(x2 + 10, y1 + 10);
             GetGraphics().DrawLine(pen, sTest, eTest);
         }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            Endpoint = e.Location;
+        }
     }
 }

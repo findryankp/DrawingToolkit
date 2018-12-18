@@ -126,5 +126,10 @@ namespace DiagramToolkit.Shapes
             point.Y = (Startpoint.Y + Endpoint.Y) / 2;
             return point;
         }
+
+        public override void Rezise(MouseEventArgs e, int x, int y)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

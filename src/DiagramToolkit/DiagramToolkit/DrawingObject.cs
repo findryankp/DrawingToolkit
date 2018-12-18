@@ -43,6 +43,7 @@ namespace DiagramToolkit
         public abstract void RenderOnPreview();
         public abstract void RenderOnEditingView();
         public abstract void RenderOnStaticView();
+        public abstract void Rezise(MouseEventArgs e, int x, int y);
 
         public virtual void ChangeState(DrawingState state)
         {
