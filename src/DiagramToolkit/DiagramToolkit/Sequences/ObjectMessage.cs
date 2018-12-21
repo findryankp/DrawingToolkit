@@ -137,7 +137,7 @@ namespace DiagramToolkit.Sequences
             {
                 Height = 30;
             }
-            GetGraphics().DrawRectangle(pen, x1, Y, 10, Height);
+            GetGraphics().FillRectangle(this.brush, x1, Y, 10, Height);
 
             x1 = X + Width;
             y1 = Y;

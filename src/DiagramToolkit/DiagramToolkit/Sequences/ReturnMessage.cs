@@ -18,6 +18,7 @@ namespace DiagramToolkit.Sequences
         private Brush brush;
         private Font font;
         private SizeF textSize;
+        private Pen pen;
 
         public static float Textlenght;
 
@@ -141,8 +142,7 @@ namespace DiagramToolkit.Sequences
         {
             throw new System.NotImplementedException();
         }
-
-        private Pen pen;
+                
         public int x1;
         public int y1;
         public int x2;

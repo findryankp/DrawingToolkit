@@ -116,7 +116,10 @@ namespace DiagramToolkit.Sequences
 
         public override Point GetCenterPoint()
         {
-            throw new System.NotImplementedException();
+            Point point = new Point();
+            point.X = X + (Width / 2);
+            point.Y = Y + (Height / 2);
+            return point;
         }
 
         private Pen pen;
